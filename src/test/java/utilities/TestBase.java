@@ -5,11 +5,9 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.Select;
 
@@ -141,6 +139,30 @@ public abstract class TestBase {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    // Product menüye click yapmak icin olusturuldu
+    public void productMenüClick() {
+        WebElement produckt = driver.findElement
+                (By.xpath("//a[@href='/products']"));
+        produckt.click();
+        waitForSecond(2);
+    }
+    // ilk ürüne click yapmak icin olusturuldu
+    public void erstProduckClick(){
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        WebElement erstProdukt = driver.findElement
+                (By.xpath("//a[@href='/product_details/1']"));
+        erstProdukt.click();
+    }
+    // sayfayi bir kez asagiya kaydirmak icin olusturuldu
+    public void scroll(){
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+    }
+    public void getUrl() {
+        driver.get("http://automationexercise.com");
+        waitForSecond(2);
     }
 
 
