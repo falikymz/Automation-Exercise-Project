@@ -41,6 +41,9 @@ public class TC_12 extends TestBase {
         actions.moveToElement(secondProduct).perform();
         WebElement addToCartSecondProduct = driver.findElement(By.xpath("(//*[@data-product-id='2'])[2]"));
         addToCartSecondProduct.click();
-
+        //7-Click 'View Cart' button
+        WebElement viewCartButton = driver.findElement(By.xpath("Click 'View Cart' button"));
+        wait.until(ExpectedConditions.elementToBeClickable(viewCartButton));
+        viewCartButton.click();
     }
 }
