@@ -167,7 +167,7 @@ public class TC_14 extends TestBase {
         String actualDeliveryAdress= driver.findElement(By.xpath("//ul[@id='address_delivery']")).getText();
         Assert.assertTrue(actualDeliveryAdress.contains(address));
         extentTest.info("Verify Address Details and Review Your Order");
-
+        extentTest.pass("Test Pass");
 
         //15. Enter description in comment text area and click 'Place Order'
         // Comment Box
@@ -214,7 +214,7 @@ public class TC_14 extends TestBase {
         WebElement verifyOrderText = driver.findElement(By.xpath("//p[text()='Congratulations! Your order has been confirmed!']"));
         Assert.assertEquals("Congratulations! Your order has been confirmed!",verifyOrderText.getText());
         extentTest.info("Verify success message 'Your order has been placed successfully!'");
-
+        extentTest.pass("Test Pass");
 
         //19. Click 'Delete Account' button
         driver.findElement(By.xpath("//a[text()=' Delete Account']")).click();
@@ -225,7 +225,9 @@ public class TC_14 extends TestBase {
         String actualAccountDeleteText=driver.findElement(By.xpath("//b")).getText();
         Assert.assertEquals("ACCOUNT DELETED!",actualAccountDeleteText);
         extentTest.info("Verify 'ACCOUNT DELETED!' and click 'Continue' button");
+        extentTest.pass("Test Pass");
 
+        extentReports.flush();
 
     }
 
