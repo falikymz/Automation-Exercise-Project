@@ -10,6 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.Select;
 
@@ -52,7 +53,7 @@ public abstract class TestBase {
 
 
         //Html raporunun belge basligini ayarlar, bu baslik sekme uzerinde görünür
-        extentHtmlReporter.config().setDocumentTitle("Batch 189 Test Reports");
+        extentHtmlReporter.config().setDocumentTitle("Automation Exercise Test Project");
 
         //Raporun adini ayarladik, Bu raporda gorunecek olan genel baslik
         extentHtmlReporter.config().setReportName(reportName);
@@ -60,7 +61,7 @@ public abstract class TestBase {
         //Bu html raporunda görmek isteyebileceğimiz herhangi bir bilgiyi asagidaki formatta ekleyebilirz
         extentReports.setSystemInfo("Enviroment","QA");
         extentReports.setSystemInfo("Browser",browser);
-        extentReports.setSystemInfo("Test Automation Engineer","Ali Can");
+        extentReports.setSystemInfo("Test Automation Engineer","QA-03 Team");
     }
 
 
