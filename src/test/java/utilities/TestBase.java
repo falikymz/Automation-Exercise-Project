@@ -5,10 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ThreadGuard;
@@ -141,6 +138,18 @@ public abstract class TestBase {
             Files.write(Paths.get(folderPath),webElement.getScreenshotAs(OutputType.BYTES));
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    //JSexecutor click method
+
+    public void jsClick(WebElement webElement){
+
+        try {
+            webElement.click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();",webElement);
         }
     }
 
