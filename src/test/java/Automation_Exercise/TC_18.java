@@ -13,9 +13,9 @@ public class TC_18 extends TestBase {
 
     @Test
     public void categoriesTest () {
-        rapor("chrome", "TC08 Test Raporu");
+        rapor("chrome", "TC18 Test Raporu");
         extentTest=extentReports.createTest
-                ("Automation Exercise","Verify All Products and product detail page");
+                ("Automation Exercise","View Category Products");
         // 1. Launch browser
         // 1. Tarayıcıyı başlatın
         // 2. Navigate to url 'http://automationexercise.com'
