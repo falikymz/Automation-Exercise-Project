@@ -3,9 +3,14 @@ package Automation_Exercise;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.TestBase;
+
+import java.time.Duration;
 
 public class TC_12 extends TestBase {
     //Launch browser
@@ -26,6 +31,11 @@ public class TC_12 extends TestBase {
         actions.moveToElement(firstProduct).perform();
         WebElement addToCart = driver.findElement(By.xpath("(//*[@data-product-id='1'])[2]"));
         addToCart.click();
+        //5-Click 'Continue Shopping' button
+        WebElement continueShoppingButton = driver.findElement(By.xpath("//*[text()='Continue Shopping']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        continueShoppingButton.click();
 
     }
 }
