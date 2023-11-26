@@ -4,10 +4,14 @@ import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utilities.TestBase;
+
+import java.util.List;
 
 public class TC_01 extends TestBase {
         Faker faker= new Faker();
@@ -46,7 +50,15 @@ public class TC_01 extends TestBase {
         waitForSecond(2);
         WebElement signUpButton= driver.findElement(By.cssSelector("button[data-qa='signup-button']"));
         signUpButton.click();
-        waitForSecond(1);
+        waitForSecond(3);
+
+
+        JavascriptExecutor js=(JavascriptExecutor)driver;
+        List<WebElement> elements = driver.findElements(By.xpath("//div[@title='Advertisement']"));
+        for (WebElement w:elements) {
+            js.executeScript("arguments[0].setAttribute('style','none')",w);
+        }
+
 
         //Verify that 'ENTER ACCOUNT INFORMATION' is visible
 
@@ -76,6 +88,10 @@ public class TC_01 extends TestBase {
         dateDropdown.sendKeys("10");
         waitForSecond(2);
 
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        waitForSecond(3);
+
         //Month
         WebElement monthDropdown = driver.findElement(By.cssSelector("#months"));
         Select select2 = new Select(monthDropdown);
@@ -88,12 +104,17 @@ public class TC_01 extends TestBase {
         yearDropdown.sendKeys("2000");
         waitForSecond(2);
 
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        waitForSecond(3);
+
         //Select checkbox 'Sign up for our newsletter!'
 
          WebElement newsletterCheckBox= driver.findElement(By.cssSelector("#newsletter"));
 
         //if(!newsletterCheckBox.isSelected()){
             newsletterCheckBox.click();
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        waitForSecond(3);
        // }
         waitForSecond(4);
         //Select checkbox 'Receive special offers from our partners!'
@@ -105,6 +126,8 @@ public class TC_01 extends TestBase {
             receiveCheckBox.click();
         //}
         waitForSecond(2);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        waitForSecond(3);
 
         //Firstname
         WebElement firstnameBox= driver.findElement(By.cssSelector("#first_name"));
@@ -117,6 +140,8 @@ public class TC_01 extends TestBase {
         String lastname= faker.name().lastName();
         lastnameBox.sendKeys(lastname);
         waitForSecond(2);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        waitForSecond(3);
 
         //Address
         WebElement adressBox1= driver.findElement(By.cssSelector("#address1"));
@@ -168,25 +193,18 @@ public class TC_01 extends TestBase {
         //Verify that 'ACCOUNT CREATED!' is visible
         WebElement result= driver.findElement(By.cssSelector("h2[class='title text-center'] b"));
         Assert.assertTrue(result.isDisplayed());
+        waitForSecond(2);
 
         //Click 'Continue' button
 
         WebElement continueButton = driver.findElement(By.xpath("//*[@data-qa='continue-button']"));
         continueButton.click();
         //Verify that 'Logged in as username' is visible
+         waitForSecond(2);
+       String loggedAs= driver.findElement(By.cssSelector("li:nth-child(10)")).getText();
 
-//        Boolean loggedAs= driver.findElement(By.cssSelector("li:nth-child(10)")).getText().contains(" Logged in as ");
-//        Assert.assertTrue(" Logged in as ",loggedAs);
-
-
-
-
-
-
-
-
-
-
+        Assert.assertTrue(" Logged in as ",(loggedAs).contains("Logged in as"));
+        waitForSecond(1);
 
 
     }
