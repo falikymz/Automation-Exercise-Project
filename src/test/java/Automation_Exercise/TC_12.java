@@ -16,6 +16,8 @@ public class TC_12 extends TestBase {
     //Launch browser
     @Test
     public void test01() {
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         //1-Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
         //2-Verify that home page is visible successfully
@@ -27,15 +29,18 @@ public class TC_12 extends TestBase {
         productsButton.click();
         //4-Hover over first product and click 'Add to cart'
         WebElement firstProduct = driver.findElement(By.xpath("//*[@src='/get_product_picture/1']"));
-        Actions actions = new Actions(driver);
         actions.moveToElement(firstProduct).perform();
-        WebElement addToCart = driver.findElement(By.xpath("(//*[@data-product-id='1'])[2]"));
-        addToCart.click();
+        WebElement addToCartFirstProduct = driver.findElement(By.xpath("(//*[@data-product-id='1'])[2]"));
+        addToCartFirstProduct.click();
         //5-Click 'Continue Shopping' button
         WebElement continueShoppingButton = driver.findElement(By.xpath("//*[text()='Continue Shopping']"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
+        //6-Hover over second product and click 'Add to cart'
+        WebElement secondProduct = driver.findElement(By.xpath("//*[@src='/get_product_picture/2']"));
+        actions.moveToElement(secondProduct).perform();
+        WebElement addToCartSecondProduct = driver.findElement(By.xpath("(//*[@data-product-id='2'])[2]"));
+        addToCartSecondProduct.click();
 
     }
 }
