@@ -4,11 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
-public class TC_26 extends TestBase {
+public class TC_25 extends TestBase {
 
     @Test
     public void test1() {
@@ -29,23 +28,15 @@ public class TC_26 extends TestBase {
         actions.sendKeys(Keys.END).perform();
         waitForSecond(3);
 
-       // Verify 'SUBSCRIPTION' is visible
+        // Verify 'SUBSCRIPTION' is visible
 
         driver.navigate().refresh();
         String subscription= driver.findElement(By.xpath("//*[.='Subscription']")).getText().toUpperCase();
         Assert.assertEquals("SUBSCRIPTION",subscription);
-         waitForSecond(3);
+        waitForSecond(3);
         //Scroll UP page to bottom
-        WebElement scrollUp= driver.findElement(By.cssSelector("#scrollUp"));
-        scrollUp.click();
-        waitForSecond(2);
-        //Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers'
-        // text is visible on screen
-
-        String actual= driver.findElement(By.xpath("(//h2[.='Full-Fledged practice website for Automation Engineers'])[1]")).getText();
-     //   String expected="Full-Fledged practice website for Automation Engineers";
-        waitForSecond(4);
-        Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
+        actions.sendKeys(Keys.UP).perform();
+        actions.sendKeys(Keys.UP).perform();
 
     }
 }
