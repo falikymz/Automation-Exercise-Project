@@ -3,17 +3,21 @@ package Automation_Exercise;
 import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import utilities.TestBase;
+
+import java.time.Duration;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class TC_14 extends TestBase {
     @Test
     public void testCase14() {
-
-        rapor("Chrome","Automation Exercise Test Case 11");
+        JavascriptExecutor js=(JavascriptExecutor)driver;
+        rapor("Edge","Automation Exercise Test Case 11");
         extentTest=extentReports.createTest("Automation Exercise","Test Case 14");
 
         //1. Launch browser
@@ -22,6 +26,11 @@ public class TC_14 extends TestBase {
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
         extentTest.info("Navigate to url 'http://automationexercise.com'");
+
+        List<WebElement> elements = driver.findElements(By.xpath("//div[@title='Advertisement']"));
+        for (WebElement w:elements) {
+            js.executeScript("arguments[0].setAttribute('style','none')",w);
+        }
 
         //3. Verify that home page is visible successfully
         String actualHomePageButtonColor = driver.findElement(By.xpath("//a[text()=' Home']")).getAttribute("style");
@@ -33,7 +42,7 @@ public class TC_14 extends TestBase {
         //4. Add products to cart
         Actions actions =new Actions(driver);
         WebElement product1 =driver.findElement(By.xpath("(//div[@class='col-sm-4'])[2]"));
-        actions.moveToElement(product1).perform();
+        js.executeScript("arguments[0].scrollIntoView(true);",product1);
         driver.findElement(By.xpath("(//a[@data-product-id='1'])[1]")).click();
         driver.findElement(By.xpath("//button[@class='btn btn-success close-modal btn-block']")).click();
         WebElement product2 =driver.findElement(By.xpath("(//div[@class='col-sm-4'])[3]"));
@@ -45,7 +54,8 @@ public class TC_14 extends TestBase {
 
         //5. Click 'Cart' button
         extentTest.info("Click 'Cart' button");
-        driver.findElement(By.xpath("//u[text()='View Cart']")).click();
+        WebElement cartButton=driver.findElement(By.xpath("//u[text()='View Cart']"));
+        cartButton.click();
 
         //6. Verify that cart page is displayed
         String actualCartPageButtonColor = driver.findElement(By.xpath("//a[text()=' Cart']")).getAttribute("style");
@@ -68,53 +78,156 @@ public class TC_14 extends TestBase {
         //9. Fill all details in Signup and create account
         Faker faker = new Faker();
        WebElement nameSignUp= driver.findElement(By.xpath("//input[@name='name']"));
-       nameSignUp.sendKeys(faker.name().fullName(), Keys.TAB,faker.internet().emailAddress(),Keys.ENTER);
+       String emailAddress =faker.internet().emailAddress();
+       String fullName =faker.name().fullName();
+       nameSignUp.sendKeys(fullName, Keys.TAB,emailAddress,Keys.ENTER);
         extentTest.info("Fill all details in Signup and create account");
 
 
         //10. Verify 'ACCOUNT CREATED!' and click 'Continue' button
-        extentTest.info("");
 
+        //Gender Radio Button
+        WebElement genderButton = driver.findElement(By.xpath("//*[@id='id_gender1']"));
+        genderButton.click();
+
+        //*Password Box
+        WebElement pwdBox=driver.findElement(By.cssSelector("#password"));
+        String pwd =faker.internet().password();
+        pwdBox.sendKeys(pwd);
+
+        // Locate to Dropdown Menu
+        WebElement day =driver.findElement(By.xpath("//select[@id='days']"));
+        WebElement month =driver.findElement(By.xpath("//select[@id='months']"));
+        WebElement year =driver.findElement(By.xpath("//select[@id='years']"));
+
+       day.sendKeys("11",Keys.ENTER);
+       month.sendKeys("April",Keys.ENTER);
+       year.sendKeys("2004",Keys.ENTER);
+
+       //*Full Name Box
+       WebElement firstName=driver.findElement(By.id("first_name"));
+       firstName.sendKeys(faker.name().firstName(),Keys.TAB,faker.name().lastName());
+
+       //*Adress Box
+        WebElement adressBox =driver.findElement(By.id("address1"));
+        String address =faker.address().fullAddress();
+        adressBox.sendKeys(address);
+
+        //*Country Box
+        WebElement countryBox= driver.findElement(By.id("country"));
+        countryBox.sendKeys("Canada");
+
+        //*State Box
+        WebElement stateBox = driver.findElement(By.xpath("//input[@id='state']"));
+        stateBox.sendKeys(faker.address().state());
+
+        //*City
+        driver.findElement(By.xpath("//input[@id='city']")).sendKeys(faker.address().cityName());
+
+        //*Zipcode
+        driver.findElement(By.xpath("//input[@id='zipcode']")).sendKeys(faker.address().zipCode());
+
+        //*Mobile Number
+        driver.findElement(By.xpath("//input[@id='mobile_number']")).sendKeys(faker.phoneNumber().cellPhone());
+
+        //Create Button
+        driver.findElement(By.xpath("//*[@data-qa='create-account']")).submit();
+
+        WebElement creatSuccesfulMessage  = driver.findElement(By.xpath("//b[text()='Account Created!']"));
+        Assert.assertEquals("ACCOUNT CREATED!",creatSuccesfulMessage.getText());
+        extentTest.info("Verify 'ACCOUNT CREATED!' and click 'Continue' button");
+        extentTest.pass("Test Pass");
 
         //11. Verify ' Logged in as username' at top
-        extentTest.info("");
 
+        //Continue Button
+        driver.findElement(By.xpath("//*[@data-qa='continue-button']")).click();
+
+        //!! wait reason google advertising ->manuel shut down
+        waitForSecond(1);
+        //Logged in as <data>
+
+        String actualLoginText = driver.findElement(By.xpath("//b")).getText();
+        Assert.assertEquals(fullName,actualLoginText);
+        extentTest.info("Verify ' Logged in as username' at top");
+        extentTest.pass("Test Pass");
 
         //12.Click 'Cart' button
-        extentTest.info("");
+        cartButton=driver.findElement(By.xpath("//a[text()=' Cart']"));
+        cartButton.click();
+        extentTest.info("Click 'Cart' button");
 
 
         //13. Click 'Proceed To Checkout' button
-        extentTest.info("");
+        driver.findElement(By.xpath("//*[text()='Proceed To Checkout']")).click();
+        extentTest.info("Click 'Proceed To Checkout' button");
 
 
         //14. Verify Address Details and Review Your Order
-        extentTest.info("");
-
+        String actualDeliveryAdress= driver.findElement(By.xpath("//ul[@id='address_delivery']")).getText();
+        Assert.assertTrue(actualDeliveryAdress.contains(address));
+        extentTest.info("Verify Address Details and Review Your Order");
+        extentTest.pass("Test Pass");
 
         //15. Enter description in comment text area and click 'Place Order'
-        extentTest.info("");
+        // Comment Box
+        driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys(faker.lorem().paragraph(1));
+
+        //Place Order Button
+        driver.findElement(By.xpath("//a[text()='Place Order']")).click();
+        extentTest.info("Enter description in comment text area and click 'Place Order'");
 
 
         //16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
-        extentTest.info("");
+
+        //Name on Card
+        driver.findElement(By.name("name_on_card")).sendKeys(fullName);
+
+        //Card Number
+        driver.findElement(By.name("card_number")).sendKeys(faker.finance().creditCard());
+
+
+        //CVC
+        driver.findElement(By.name("cvc")).sendKeys(faker.number().digits(3));
+
+
+        //Expiration
+        int randomMonthNumber=faker.number().numberBetween(1,13);
+        String setMonthNumber=String.valueOf(randomMonthNumber);
+        driver.findElement(By.name("expiry_month")).sendKeys(setMonthNumber);
+
+
+        //Year
+        int randomYearNumber=faker.number().numberBetween(1905,2023);
+        String setYearNumber=String.valueOf(randomYearNumber);
+        driver.findElement(By.name("expiry_year")).sendKeys(setYearNumber);
+
+        extentTest.info("Enter payment details: Name on Card, Card Number, CVC, Expiration date");
 
 
         //17. Click 'Pay and Confirm Order' button
-        extentTest.info("");
+        driver.findElement(By.id("submit")).click();
+        extentTest.info("Click 'Pay and Confirm Order' button");
 
 
-        //18. Verify success message 'Your order has been placed successfully!'
-        extentTest.info("");
-
+        //18. Verify success message 'Congratulations! Your order has been confirmed!'
+        WebElement verifyOrderText = driver.findElement(By.xpath("//p[text()='Congratulations! Your order has been confirmed!']"));
+        Assert.assertEquals("Congratulations! Your order has been confirmed!",verifyOrderText.getText());
+        extentTest.info("Verify success message 'Your order has been placed successfully!'");
+        extentTest.pass("Test Pass");
 
         //19. Click 'Delete Account' button
-        extentTest.info("");
+        driver.findElement(By.xpath("//a[text()=' Delete Account']")).click();
+        extentTest.info("Click 'Delete Account' button");
 
 
         //20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
-        extentTest.info("");
+        String actualAccountDeleteText=driver.findElement(By.xpath("//b")).getText();
+        Assert.assertEquals("ACCOUNT DELETED!",actualAccountDeleteText);
+        extentTest.info("Verify 'ACCOUNT DELETED!' and click 'Continue' button");
+        extentTest.pass("Test Pass");
 
+        extentReports.flush();
 
     }
 
