@@ -3,14 +3,29 @@ package Automation_Exercise;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
+import java.util.List;
+
 public class TC_17 extends TestBase {
+/*
+Test Case 17: Remove Products From Cart
+1. Launch browser
+2. Navigate to url 'http://automationexercise.com'
+3. Verify that home page is visible successfully
+4. Add products to cart
+5. Click 'Cart' button
+6. Verify that cart page is displayed
+7. Click 'X' button corresponding to particular product
+8. Verify that product is removed from the cart
+*/
 
     @Test
     public void TestCase17() {
+        JavascriptExecutor js=(JavascriptExecutor)driver;
         rapor("Chrome", "Automation Exercise Test");
         extentTest = extentReports.createTest("Automation Exercise", "Test Case 17");
 
@@ -20,6 +35,12 @@ public class TC_17 extends TestBase {
         //2. Navigate to url 'http://automationexercise.com'(2. 'http://automationexercise.com' URL'sine gidin)
         driver.get("http://automationexercise.com");
         extentTest.info("'http://automationexercise.com'sitesine gidildi");
+        List<WebElement> elements = driver.findElements(By.xpath("//div[@title='Advertisement']"));
+        for (WebElement w:elements) {
+            js.executeScript("arguments[0].setAttribute('style','none')",w);
+        }
+
+
 
         //3.Verify that home page is visible successfully(3. Ana sayfanın başarıyla göründüğünü doğrulayın)
         WebElement logoElementi = driver.findElement(By.xpath("//img[@src='/static/images/home/logo.png']"));
