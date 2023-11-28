@@ -1,4 +1,4 @@
-package atomationExercise;
+package Automation_Exercise;
 
 import com.github.javafaker.Faker;
 import org.junit.Assert;
