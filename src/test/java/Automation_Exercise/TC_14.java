@@ -27,10 +27,6 @@ public class TC_14 extends TestBase {
         driver.get("http://automationexercise.com");
         extentTest.info("Navigate to url 'http://automationexercise.com'");
 
-        List<WebElement> elements = driver.findElements(By.xpath("//div[@title='Advertisement']"));
-        for (WebElement w:elements) {
-            js.executeScript("arguments[0].setAttribute('style','none')",w);
-        }
 
         //3. Verify that home page is visible successfully
         String actualHomePageButtonColor = driver.findElement(By.xpath("//a[text()=' Home']")).getAttribute("style");
