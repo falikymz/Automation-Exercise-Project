@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
@@ -37,6 +38,18 @@ public class TC_25 extends TestBase {
         //Scroll UP page to bottom
         actions.sendKeys(Keys.UP).perform();
         actions.sendKeys(Keys.UP).perform();
+
+        //Click on arrow at bottom right side to move upward
+
+        WebElement scrollUp= driver.findElement(By.cssSelector("#scrollUp"));
+        scrollUp.click();
+        waitForSecond(2);
+
+        String actual= driver.findElement(By.xpath("(//h2[.='Full-Fledged practice website for Automation Engineers'])[1]")).getText();
+        //   String expected="Full-Fledged practice website for Automation Engineers";
+        waitForSecond(8);
+        Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
+
 
     }
 }

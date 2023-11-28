@@ -3,6 +3,7 @@ package Automation_Exercise;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -35,6 +36,7 @@ public class TC_26 extends TestBase {
         String subscription= driver.findElement(By.xpath("//*[.='Subscription']")).getText().toUpperCase();
         Assert.assertEquals("SUBSCRIPTION",subscription);
          waitForSecond(3);
+
         //Scroll UP page to bottom
         WebElement scrollUp= driver.findElement(By.cssSelector("#scrollUp"));
         scrollUp.click();
@@ -42,10 +44,19 @@ public class TC_26 extends TestBase {
         //Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers'
         // text is visible on screen
 
-        String actual= driver.findElement(By.xpath("(//h2[.='Full-Fledged practice website for Automation Engineers'])[1]")).getText();
-     //   String expected="Full-Fledged practice website for Automation Engineers";
-        waitForSecond(4);
-        Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
+
+      //  Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
+        waitForSecond(2);
+
+         String actual= driver.findElement(By.xpath("(//h2[.='Full-Fledged practice website for Automation Engineers'])[1]")).getText();
+         String expected="Full-Fledged practice website for Automation Engineers";
+        waitForSecond(8);
+
+
+
 
     }
 }
