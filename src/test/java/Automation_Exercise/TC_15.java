@@ -243,10 +243,10 @@ public class TC_15 extends TestBase {
         extentTest.info("Öde ve Siparişi onayla butonuna tıklandı");
 
 
-        //16. Verify success message 'Your order has been placed successfully!'
+        //16. Verify  message 'Congratulations! Your order has been confirmed!'
 
-        String expectedMessage = "Your order has been placed successfully!";
-        WebElement actualMessage = driver.findElement(By.xpath("//div[@class='col-md-12 form-group']"));
+        String expectedMessage = "Congratulations! Your order has been confirmed!";
+        WebElement actualMessage = driver.findElement(By.xpath("//p[@style='font-size: 20px; font-family: garamond;']"));
 
         Assert.assertEquals(expectedMessage,actualMessage.getText());
 
