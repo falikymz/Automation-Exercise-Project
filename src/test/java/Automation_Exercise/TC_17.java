@@ -56,19 +56,22 @@ Test Case 17: Remove Products From Cart
         //4. Add products to cart(4. Ürünleri sepete ekleyin)
         WebElement blueTop = driver.findElement(By.xpath("(//*[@src='/get_product_picture/1'])"));
         actions.moveToElement(blueTop).perform();
-        driver.findElement(By.xpath("(//*[@data-product-id='1'])")).click();
+        WebElement product01=driver.findElement(By.xpath("(//*[@data-product-id='1'])"));
+        jsClick(product01);
         driver.findElement(By.xpath("(//*[@class='btn btn-success close-modal btn-block'])")).click();
 
 
         WebElement menTshirt = driver.findElement(By.xpath("(//*[@src='/get_product_picture/2'])"));
         actions.moveToElement(menTshirt).perform();
-        driver.findElement(By.xpath("(//*[@data-product-id='2'])")).click();
+        WebElement product02=driver.findElement(By.xpath("(//*[@data-product-id='2'])"));
+        jsClick(product02);
         driver.findElement(By.xpath("(//*[@class='btn btn-success close-modal btn-block'])")).click();
 
 
         WebElement sleevelessDress = driver.findElement(By.xpath("(//*[@src='/get_product_picture/3'])"));
         actions.moveToElement(sleevelessDress).perform();
-        driver.findElement(By.xpath("(//*[@data-product-id='3'])")).click();
+        WebElement product03=driver.findElement(By.xpath("(//*[@data-product-id='3'])"));
+        jsClick(product03);
         extentTest.info("Sepete üç ürün başarılı bir şekilde eklendi");
 
 
