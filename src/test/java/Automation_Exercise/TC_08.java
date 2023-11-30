@@ -1,4 +1,4 @@
-package atomationExercise;
+package Automation_Exercise;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import utilies.TestBase;
+import utilities.TestBase;
 
 
 public class TC_08 extends TestBase {

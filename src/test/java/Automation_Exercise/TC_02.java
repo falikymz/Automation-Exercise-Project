@@ -1,4 +1,4 @@
-package atomationExercise;
+package Automation_Exercise;
 
 import com.github.javafaker.Faker;
 import org.junit.Assert;
@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import utilies.TestBase;
+import utilities.TestBase;
 
 
 public class TC_02 extends TestBase {
