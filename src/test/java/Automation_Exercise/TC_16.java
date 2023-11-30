@@ -3,14 +3,15 @@ package Automation_Exercise;
 import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.TestBase;
 
-public class Test_16 extends TestBase {
+import java.time.Duration;
+
+public class TC_16 extends TestBase {
 
     @Test
     public void test16() {
@@ -105,6 +106,8 @@ public class Test_16 extends TestBase {
         Assert.assertEquals(ortakAdresShipp,ortakAdresDelivery);
 
 //        12. Enter description in comment text area and click 'Place Order'
+
+        actions.sendKeys(Keys.END).perform();
         WebElement webElementPlaceOrder=driver.findElement(By.xpath("//a[@href='/payment']"));
 
         actions.scrollToElement(webElementPlaceOrder).perform();
@@ -120,13 +123,18 @@ public class Test_16 extends TestBase {
         driver.findElement(By.name("expiry_year")).sendKeys(faker.number().numberBetween(1950,2035)+"",Keys.TAB);
 
 //        14. Click 'Pay and Confirm Order' button
-        driver.findElement(By.id("submit")).click();
+       WebElement submit= driver.findElement(By.id("submit"));
+       jsClick(submit);
 
 //        15. Verify success message 'Your order has been placed successfully!'
 
-        String alertMessage=driver.findElement(By.xpath("(//div[@class='alert-success alert'])[1]")).getText();
-        String expectedTextAlert="'Your order has been placed successfully!'";
-        //Assert.assertEquals(expectedTextAlert,alertMessage);
+           WebElement succesAlert=driver.findElement(By.xpath("(//div[@class='alert-success alert'])[1]"));
+
+          //Assert.assertTrue(succesAlert.isDisplayed());
+
+        System.out.println("succesAlert.getText() = " + succesAlert.getText());
+
+
 //        16. Click 'Delete Account' button
         driver.findElement(By.xpath("//a[@href='/delete_account']")).click();
 
