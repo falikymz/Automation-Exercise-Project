@@ -235,6 +235,8 @@ public abstract class TestBase {
 
     protected void registerTestBase(){
 
+        driver.get("https://www.automationexercise.com/");
+
         // Verify that home page is visible successfully
         Assert.assertTrue(driver.findElement(By.tagName("h1")).isDisplayed());
 
