@@ -43,12 +43,12 @@ public class TC_12 extends TestBase {
 
         actions.moveToElement(firstProduct).perform();
         WebElement addToCartFirstProduct = driver.findElement(By.xpath("(//*[@data-product-id='1'])[2]"));
-        js.executeScript("arguments[0].click();",addToCartFirstProduct);
+        jsClick(addToCartFirstProduct);
 
 
         //5-Click 'Continue Shopping' button
         WebElement continueShoppingButton = driver.findElement(By.xpath("//*[text()='Continue Shopping']"));
-        js.executeScript("arguments[0].click();",continueShoppingButton);
+        jsClick(continueShoppingButton);
         wait.until(ExpectedConditions.invisibilityOf(continueShoppingButton));
 
 
@@ -60,7 +60,7 @@ public class TC_12 extends TestBase {
 
         actions.moveToElement(secondProduct).perform();
         WebElement addToCartSecondProduct = driver.findElement(By.xpath("(//*[@data-product-id='2'])[2]"));
-        js.executeScript("arguments[0].click();",addToCartSecondProduct);
+        jsClick(addToCartSecondProduct);
 
 
         //7-Click 'View Cart' button
