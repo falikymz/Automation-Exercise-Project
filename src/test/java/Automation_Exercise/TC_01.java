@@ -17,21 +17,31 @@ public class TC_01 extends TestBase {
         Faker faker= new Faker();
     @Test
     public void test1() {
+        rapor("browser","automationexercise");
+        extentTest = extentReports.createTest("Register User","Test Steps");
+
         //Lunch Browser
         driver.get("https://www.google.com");
+        extentTest.info("Launch browser");
         //Navigate to url
         driver.navigate().to("http://automationexercise.com");
+        extentTest.info("Navigate to url http://automationexercise.com ");
+
         //Verify that home page is visible successfully
         String actualHomePageButtonColor = driver.findElement(By.xpath("//a[text()=' Home']")).getAttribute("style");
         String expectedHomePageButtonColor ="color: orange;";
-        Assert.assertEquals(expectedHomePageButtonColor,actualHomePageButtonColor);
+         Assert.assertEquals(expectedHomePageButtonColor,actualHomePageButtonColor);
+         extentTest.info("Verify that home page is visible successfully");
+
         // Click on 'Signup / Login' button
         driver.findElement(By.cssSelector("a[href='/login']")).click();
+        extentTest.info("Click on 'Signup / Login' button");
 
         //Verify 'New User Signup!' is visible
         driver.navigate().refresh();
         String newUserSignUp= driver.findElement(By.xpath("//*[.='New User Signup!']")).getText();
         Assert.assertEquals("New User Signup!",newUserSignUp);
+        extentTest.info("Verify 'New User Signup!' is visible");
 
         // Enter name and email address
         WebElement nameBox= driver.findElement(By.xpath("//input[@placeholder='Name']"));
@@ -44,13 +54,16 @@ public class TC_01 extends TestBase {
         waitForSecond(2);
         emailBox.sendKeys(useremail);
 
+        extentTest.info("Enter name and email address");
+
+
 
         //Click 'Signup' button
-
         waitForSecond(2);
         WebElement signUpButton= driver.findElement(By.cssSelector("button[data-qa='signup-button']"));
         signUpButton.click();
         waitForSecond(3);
+        extentTest.info(" 'Signup' butonuna tıklar.");
 
 
         JavascriptExecutor js=(JavascriptExecutor)driver;
@@ -66,6 +79,7 @@ public class TC_01 extends TestBase {
         String enterAccInfo= driver.findElement(By.xpath("//*[.='Enter Account Information']")).getText().toUpperCase();
         Assert.assertEquals("ENTER ACCOUNT INFORMATION",enterAccInfo);
         waitForSecond(1);
+        extentTest.info("Verify that 'ENTER ACCOUNT INFORMATION' is visible" );
 
         //Fill details: Title, Name, Email, Password, Date of birth
          //radio button
@@ -106,10 +120,12 @@ public class TC_01 extends TestBase {
 
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         waitForSecond(3);
+        extentTest.info("Fill details: Title, Name, Email, Password, Date of birth");
 
         //Select checkbox 'Sign up for our newsletter!'
 
          WebElement newsletterCheckBox= driver.findElement(By.cssSelector("#newsletter"));
+          extentTest.info(" Select checkbox 'Sign up for our newsletter!");
 
         //if(!newsletterCheckBox.isSelected()){
             newsletterCheckBox.click();
@@ -119,6 +135,7 @@ public class TC_01 extends TestBase {
         waitForSecond(4);
         //Select checkbox 'Receive special offers from our partners!'
         WebElement receiveCheckBox= driver.findElement(By.cssSelector("#optin"));
+        extentTest.info("Select checkbox 'Receive special offers from our partners");
 
         waitForSecond(2);
 
@@ -135,6 +152,7 @@ public class TC_01 extends TestBase {
         firstnameBox.sendKeys(name);
         waitForSecond(2);
 
+
         //Lastname
         WebElement lastnameBox= driver.findElement(By.cssSelector("#last_name"));
         String lastname= faker.name().lastName();
@@ -149,11 +167,13 @@ public class TC_01 extends TestBase {
         adressBox1.sendKeys(adress);
         waitForSecond(2);
 
+
         //Address2
         WebElement adressBox2= driver.findElement(By.cssSelector("#address2"));
         String adress2=faker.address().cityName();
         adressBox2.sendKeys(adress2);
         waitForSecond(2);
+
 
 
         //Country
@@ -162,16 +182,19 @@ public class TC_01 extends TestBase {
         countryDropdown.sendKeys("Canada");
         waitForSecond(2);
 
+
         //State
         WebElement stateBox= driver.findElement(By.cssSelector("#state"));
         stateBox.sendKeys("Ontario");
         waitForSecond(2);
+
 
         //City
         WebElement cityBox= driver.findElement(By.cssSelector("#city"));
         String city= faker.address().city();
         cityBox.sendKeys(city);
         waitForSecond(2);
+
 
         //Zipcode
         WebElement zipcodeBox= driver.findElement(By.cssSelector("#zipcode"));
@@ -184,27 +207,56 @@ public class TC_01 extends TestBase {
         String phoneNum= faker.address().zipCode();
         phoneNumberBox.sendKeys(phoneNum);
         waitForSecond(2);
+        extentTest.info(" Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number");
+
 
         //Create Account
         WebElement createAccountButton= driver.findElement(By.cssSelector("button[data-qa='create-account']"));
         createAccountButton.submit();
         waitForSecond(2);
+        extentTest.info("Click 'Create Account button'");
 
         //Verify that 'ACCOUNT CREATED!' is visible
         WebElement result= driver.findElement(By.cssSelector("h2[class='title text-center'] b"));
         Assert.assertTrue(result.isDisplayed());
         waitForSecond(2);
+        extentTest.info("Verify that 'ACCOUNT CREATED!' is visible");
+
 
         //Click 'Continue' button
 
         WebElement continueButton = driver.findElement(By.xpath("//*[@data-qa='continue-button']"));
         continueButton.click();
+        extentTest.info("Click 'Continue' button");
+
         //Verify that 'Logged in as username' is visible
          waitForSecond(2);
        String loggedAs= driver.findElement(By.cssSelector("li:nth-child(10)")).getText();
 
         Assert.assertTrue(" Logged in as ",(loggedAs).contains("Logged in as"));
         waitForSecond(1);
+        extentTest.info("Verify that 'Logged in as username' is visible");
+
+        //Click 'Delete Account' button
+
+        WebElement deleteAccount= driver.findElement(By.cssSelector("a[href='/delete_account']"));
+        deleteAccount.click();
+        extentTest.info("Click 'Delete Account' button");
+
+
+        // Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
+        //h2[class='title text-center'] b
+        WebElement accountDeleted= driver.findElement(By.cssSelector("h2[class='title text-center'] b"));
+        driver.findElement(By.cssSelector("h2[class='title text-center'] b"));
+        Assert.assertTrue(accountDeleted.isDisplayed());
+        waitForSecond(2);
+
+        WebElement cont =driver.findElement(By.xpath("//a[@class='btn btn-primary']"));
+        cont.click();
+
+         extentTest.info("Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button");
+        extentTest.info("TEST PASSED");
+        extentReports.flush();
 
 
     }
