@@ -1,4 +1,4 @@
 package Automation_Exercise;
 
-public class deneme {
+public class deneme12 {
 }
