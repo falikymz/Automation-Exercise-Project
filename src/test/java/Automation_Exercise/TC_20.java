@@ -38,7 +38,7 @@ public class TC_20 extends TestBase {
         extentTest.info("Click 'Pruducts' button ");
 
         //4. Verify user is navigated to ALL PRODUCTS page successfully
-        String actualHomePageButtonColor = driver.findElement(By.xpath("//a[text()=' Home']")).getAttribute("style");
+        String actualHomePageButtonColor = driver.findElement(By.xpath("//a[text()=' Products']")).getAttribute("style");
         String expectedHomePageButtonColor ="color: orange;";
         Assert.assertEquals(expectedHomePageButtonColor,actualHomePageButtonColor);
         extentTest.info("//3.Verify that home page is visible successfully");

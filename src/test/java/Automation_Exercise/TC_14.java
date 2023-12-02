@@ -141,8 +141,8 @@ public class TC_14 extends TestBase {
         //11. Verify ' Logged in as username' at top
 
         //Continue Button
-        driver.findElement(By.xpath("//*[@data-qa='continue-button']")).click();
-
+        WebElement continueButton=driver.findElement(By.xpath("//*[@data-qa='continue-button']"));
+        jsClick(continueButton);
         //!! wait reason google advertising ->manuel shut down
         waitForSecond(1);
         //Logged in as <data>
@@ -154,12 +154,13 @@ public class TC_14 extends TestBase {
 
         //12.Click 'Cart' button
         cartButton=driver.findElement(By.xpath("//a[text()=' Cart']"));
-        cartButton.click();
+        jsClick(cartButton);
         extentTest.info("Click 'Cart' button");
 
 
         //13. Click 'Proceed To Checkout' button
-        driver.findElement(By.xpath("//*[text()='Proceed To Checkout']")).click();
+        WebElement proceedToCheckButton=driver.findElement(By.xpath("//*[text()='Proceed To Checkout']"));
+        jsClick(proceedToCheckButton);
         extentTest.info("Click 'Proceed To Checkout' button");
 
 
@@ -207,7 +208,8 @@ public class TC_14 extends TestBase {
 
 
         //17. Click 'Pay and Confirm Order' button
-        driver.findElement(By.id("submit")).click();
+        WebElement payConfirmButton =driver.findElement(By.id("submit"));
+        jsClick(payConfirmButton);
         extentTest.info("Click 'Pay and Confirm Order' button");
 
 
@@ -218,7 +220,8 @@ public class TC_14 extends TestBase {
         extentTest.pass("Test Pass");
 
         //19. Click 'Delete Account' button
-        driver.findElement(By.xpath("//a[text()=' Delete Account']")).click();
+        WebElement deleteAccButton=driver.findElement(By.xpath("//a[text()=' Delete Account']"));
+        jsClick(deleteAccButton);
         extentTest.info("Click 'Delete Account' button");
 
 
