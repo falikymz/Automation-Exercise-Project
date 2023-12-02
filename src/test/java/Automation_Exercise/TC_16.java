@@ -17,7 +17,6 @@ public class TC_16 extends TestBase {
     public void test16() {
 
 
-
         registerTestBase();//TestBase Classındaki bu method ile önce register olunmalı.
 
 

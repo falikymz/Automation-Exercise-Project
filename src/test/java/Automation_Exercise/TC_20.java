@@ -21,7 +21,6 @@ public class TC_20 extends TestBase {
 12. Verify that those products are visible in cart after login as well
      */
 
-
     @Test
     public void testCase20() {
         rapor("Chrome","Automation Exercise Test");
