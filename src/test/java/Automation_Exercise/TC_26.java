@@ -71,6 +71,7 @@ public class TC_26 extends TestBase {
         // Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
         extentTest.info("Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen");
         extentTest.info("TEST PASSED");
+        extentReports.flush();
 
 
 
