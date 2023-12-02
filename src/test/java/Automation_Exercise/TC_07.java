@@ -17,17 +17,16 @@ public class TC_07 extends TestBase {
 
         driver.get("https://www.google.com");
         rapor("Chrome","Automation Exercise Test");
-        createTest("Automation Exercise".getClass(), "Test Case 17");
+        extentTest=extentReports.createTest("Automation Exercise", "Test Case 17");
 
 
         // 2. Navigate to url 'http://automationexercise.com'
-
         driver.get("http://automationexercise.com");
 
 
         // 3. Verify that home page is visible successfully
 
-       WebElement logoPage= driver.findElement(By.xpath("//img[@src='/static/images/home/logo.png']"));
+        WebElement logoPage= driver.findElement(By.xpath("//img[@src='/static/images/home/logo.png']"));
         Assert.assertTrue(logoPage.isDisplayed());
 
         // 4. Click on 'Test Cases' button

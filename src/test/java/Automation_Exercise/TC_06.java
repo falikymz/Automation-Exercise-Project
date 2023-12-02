@@ -101,57 +101,12 @@ public class TC_06 extends TestBase {
         extentTest.info("Verify success message 'Success! Your details have been submitted successfully.' is visible.");
         extentTest.pass("Test Pass");
 
-        extentReports.flush();
-
-
-
 
 
         //11. Click 'Home' button and verify that landed to home page successfully
-
         driver.findElement(By.xpath("//i[@class='fa fa-angle-double-left']")).click();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        extentTest.info("11. Click 'Home' button and verify that landed to home page successfully");
+        extentReports.flush();
     }
 }
 

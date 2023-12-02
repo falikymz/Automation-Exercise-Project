@@ -144,26 +144,22 @@ public abstract class TestBase {
         }
     }
 
-<<<<<<< HEAD
+
     //JSexecutor click method
 
-=======
->>>>>>> kfurkanklc
     public void jsClick(WebElement webElement){
 
         try {
             webElement.click();
         } catch (Exception e) {
-<<<<<<< HEAD
+
             JavascriptExecutor js = (JavascriptExecutor) driver;
-=======
-            JavascriptExecutor js= (JavascriptExecutor) driver;
->>>>>>> kfurkanklc
+
             js.executeScript("arguments[0].click();",webElement);
         }
     }
 
-<<<<<<< HEAD
+
     //Create Account
     public void createAccount(String email ,String pwd){
         Faker faker =new Faker();
@@ -394,8 +390,7 @@ public abstract class TestBase {
     }
 
 //*************************************************************************************************************
-=======
->>>>>>> kfurkanklc
+
 
 
 

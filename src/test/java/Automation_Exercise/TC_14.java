@@ -170,7 +170,8 @@ public class TC_14 extends TestBase {
         driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys(faker.lorem().paragraph(1));
 
         //Place Order Button
-        driver.findElement(By.xpath("//a[text()='Place Order']")).click();
+        WebElement orderButton =driver.findElement(By.xpath("//a[text()='Place Order']"));
+        jsClick(orderButton);
         extentTest.info("Enter description in comment text area and click 'Place Order'");
 
 
