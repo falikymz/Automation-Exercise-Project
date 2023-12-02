@@ -1,4 +1,8 @@
 package Automation_Exercise;
+
+import com.aventstack.extentreports.ExtentReporter;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
@@ -53,6 +57,8 @@ public class TC_11 extends TestBase {
         extentTest.pass("Test Pass");
 
         extentReports.flush();
+
+
 
     }
 }
