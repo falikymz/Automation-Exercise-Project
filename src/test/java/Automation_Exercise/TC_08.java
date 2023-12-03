@@ -13,9 +13,9 @@ public class TC_08 extends TestBase {
     @Test
     public void test01() {
 
-        rapor("chrome", "TC08 Test Raporu","TC_08");
+        rapor("Chrome", "Automation Exercise ","TC_08","Selma Simsek");
         extentTest=extentReports.createTest
-                ("Automation Exercise","Verify All Products and product detail page");
+                ("Test Case 8: Verify All Products and product detail page","Test Steps");
 
         // 1. Tarayıcıyı başlatın
         //1.Launch browser

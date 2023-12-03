@@ -15,8 +15,8 @@ public class TC_10 extends TestBase {
     public void Test() {
 
         //1. Launch browser
-        rapor("Chrome","Automation Exercise ","TC_10","Rabia Koç");
-        extentTest=extentReports.createTest("Test Case 10: Verify Subscription in home page","Test10");
+        rapor("Chrome","Automation Exercise ","TC_10","Rabia Koc");
+        extentTest=extentReports.createTest("Test Case 10: Verify Subscription in home page","Test Steps");
 
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");

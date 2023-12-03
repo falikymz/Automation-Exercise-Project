@@ -15,10 +15,10 @@ public class TC_16 extends TestBase {
 
     @Test
     public void test16() {
-        rapor("Chrome","Automation Exercise","TC_16");
+        rapor("Chrome","Automation Exercise ","TC_16","Huseyin Bakay");
 
         registerTestBase();//TestBase Classındaki bu method ile önce register olunmalı.
-        extentTest=extentReports.createTest("Place Order: Login before Checkout","Test16");
+        extentTest=extentReports.createTest("Test Case 16: Place Order: Login before Checkout","Test Steps");
 
 //        1. Launch browser
 //        2. Navigate to url 'http://automationexercise.com'

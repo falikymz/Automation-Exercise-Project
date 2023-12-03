@@ -14,9 +14,9 @@ public class TC_02 extends TestBase {
     @Test
     public void homePageTest() {
         Faker faker =new Faker();
-        rapor("chrome", "TC02 Test Raporu","TC_02","Selma Şimşek");
+        rapor("Chrome", "Automation Exercise ","TC_02","Selma Simsek");
         extentTest=extentReports.createTest
-                ("Automation Exercise"," Login User with correct email and password");
+                ("Test Case 2: Login User with correct email and password","Test Steps");
        // String email = "silver.syed@forkshape.com";
         String email =faker.internet().emailAddress();
        // String username = "silver";

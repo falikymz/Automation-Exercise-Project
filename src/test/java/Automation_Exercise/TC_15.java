@@ -22,8 +22,8 @@ public class TC_15 extends TestBase {
 
     @Test
     public void testCase_15() {
-        rapor("chrome","Automation Exercise Testi","TC_15");
-        extentTest=extentReports.createTest("Place Order: Register before Checkout", "Test steps");
+        rapor("Chrome","Automation Exercise ","TC_15","Rumeysa Aslan");
+        extentTest=extentReports.createTest("Test Case 15: Place Order: Register before Checkout", "Test steps");
 
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
