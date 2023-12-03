@@ -17,8 +17,8 @@ public class TC_21 extends TestBase {
     public void testCase21() {
 
         JavascriptExecutor js=(JavascriptExecutor)driver;
-        rapor("Chrome","Automation Exercise","TC_21");
-            extentTest=extentReports.createTest("Automation Exercise","Test Case 11");
+        rapor("Chrome","Automation Exercise ","TC_21","Furkan Ali Kaymaz");
+            extentTest=extentReports.createTest("Test Case 21: Add review on product","Test Steps");
 
         //1. Launch browser
         driver.get("https://www.google.com");

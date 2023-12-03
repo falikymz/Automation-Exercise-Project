@@ -17,8 +17,8 @@ public class TC_25 extends TestBase {
     public void test1() {
 
 
-        rapor("browser","automationexercise","TC_25");
-        extentTest = extentReports.createTest("Scroll-up functionality using arrow","Test Steps");
+        rapor("Chrome","Automation Exercise ","TC_25","Gulsen Tekeli");
+        extentTest = extentReports.createTest("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down functionality","Test Steps");
 
         //Lunch Browser
         driver.get("https://www.google.com");

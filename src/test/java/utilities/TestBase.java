@@ -60,7 +60,7 @@ public abstract class TestBase {
         extentHtmlReporter.config().setReportName(reportName);
 
         //Bu html raporunda görmek isteyebileceğimiz herhangi bir bilgiyi asagidaki formatta ekleyebilirz
-        extentReports.setSystemInfo("Enviroment","QA");
+        extentReports.setSystemInfo("Enviroment","QA-03 Team");
         extentReports.setSystemInfo("Browser",browser);
         extentReports.setSystemInfo("Test Automation Engineer",engineer);
     }

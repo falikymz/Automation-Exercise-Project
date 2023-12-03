@@ -26,8 +26,8 @@ Test Case 17: Remove Products From Cart
     @Test
     public void TestCase17() {
         JavascriptExecutor js=(JavascriptExecutor)driver;
-        rapor("Chrome", "Automation Exercise Test","TC_17");
-        extentTest = extentReports.createTest("Automation Exercise", "Test Case 17");
+        rapor("Chrome", "Automation Exercise ","TC_17","Muammer Ucar");
+        extentTest = extentReports.createTest("Test Case 17: Remove Products From Cart", "Test Steps");
 
         //1. Launch browser(1. Tarayıcıyı başlatın)
         extentTest.info("Tarayıcı başlatıldı");

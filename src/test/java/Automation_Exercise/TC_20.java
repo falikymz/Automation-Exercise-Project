@@ -23,8 +23,8 @@ public class TC_20 extends TestBase {
 
     @Test
     public void testCase20() {
-        rapor("Chrome","Automation Exercise Test","TC_20");
-        extentTest=extentReports.createTest("Automation Exercise","Test Case 06");
+        rapor("Chrome","Automation Exercise ","TC_20","Aysegul Temel");
+        extentTest=extentReports.createTest("Test Case 20: Search Products and Verify Cart After Login","Test Steps");
 
         //1. Launch browser
         extentTest.info("Launch browser");
