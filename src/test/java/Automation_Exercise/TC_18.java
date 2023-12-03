@@ -13,7 +13,7 @@ public class TC_18 extends TestBase {
 
     @Test
     public void categoriesTest () {
-        rapor("chrome", "TC18 Test Raporu","TC_18");
+        rapor("chrome", "TC18 Test Raporu","TC_18","Selma Simsek");
         extentTest=extentReports.createTest
                 ("Automation Exercise","View Category Products");
         // 1. Launch browser

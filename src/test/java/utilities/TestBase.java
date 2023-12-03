@@ -145,6 +145,30 @@ public abstract class TestBase {
             throw new RuntimeException(e);
         }
     }
+    // Product menüye click yapmak icin olusturuldu
+    public void productMenüClick() {
+        WebElement produckt = driver.findElement
+                (By.xpath("//a[@href='/products']"));
+        produckt.click();
+        waitForSecond(2);
+    }
+    // ilk ürüne click yapmak icin olusturuldu
+    public void erstProduckClick(){
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        WebElement erstProdukt = driver.findElement
+                (By.xpath("//a[@href='/product_details/1']"));
+        erstProdukt.click();
+    }
+    // sayfayi bir kez asagiya kaydirmak icin olusturuldu
+    public void scroll(){
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+    }
+    public void getUrl() {
+        driver.get("http://automationexercise.com");
+        waitForSecond(2);
+    }
 
 
     //JSexecutor click method
