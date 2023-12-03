@@ -17,7 +17,7 @@ public class TC_25 extends TestBase {
     public void test1() {
 
 
-        rapor("browser","automationexercise");
+        rapor("browser","automationexercise","TC_25");
         extentTest = extentReports.createTest("Scroll-up functionality using arrow","Test Steps");
 
         //Lunch Browser

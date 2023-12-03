@@ -11,7 +11,7 @@ import utilities.TestBase;
 public class TC_13 extends TestBase {
     @Test
     public void testCase13() {
-        rapor("Chrome","AutomationExerciseTest");
+        rapor("Chrome","AutomationExerciseTest","13");
         extentTest= extentReports.createTest("Automation Exercise Negative Test ","Test Steps");
 
         //1. Launch browser

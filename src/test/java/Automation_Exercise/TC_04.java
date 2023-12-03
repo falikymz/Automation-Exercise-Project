@@ -13,7 +13,7 @@ public class TC_04 extends TestBase {
     @Test
     public void test04() {
 
-        rapor("chrome","Test04 Otomation Exercise Test");
+        rapor("chrome","Test04 Otomation Exercise Test","TC_04");
         extentTest=extentReports.createTest("Automation Exercise","Test Case 04");
         //Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");

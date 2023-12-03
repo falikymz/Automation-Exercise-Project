@@ -18,7 +18,7 @@ public class TC_05 extends TestBase {
     @Test
     public void testCase05() {
         Faker faker = new Faker();
-        rapor("Chrome","AutomationExerciseTest");
+        rapor("Chrome","AutomationExerciseTest","TC_05");
         extentTest= extentReports.createTest("Automation Exercise Negative Test ","Test Steps");
 
 

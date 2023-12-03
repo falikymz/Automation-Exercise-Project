@@ -17,7 +17,7 @@ public class TC_01 extends TestBase {
         Faker faker= new Faker();
     @Test
     public void test1() {
-        rapor("browser","automationexercise");
+        rapor("browser","automationexercise","TC_01","Gulsen Tekeli");
         extentTest = extentReports.createTest("Register User","Test Steps");
 
         //Lunch Browser

@@ -30,7 +30,8 @@ public abstract class TestBase {
     protected   ExtentTest extentTest; // Test adimlarina bilgi ekler
 
 
-    public void rapor(String browser,String reportName){
+    public void rapor(String browser,String reportName,String testName,String engineer){
+
         /*
         1- ExtentReport classindan raporlamayi baslatmasi icin bir object olusturmaliyiz
         2- ExtentHtmlReporter class indan raporlari html formatinda olusturmasi icin bir object olusturmaliyiz
@@ -44,8 +45,8 @@ public abstract class TestBase {
         //cunku bu pathi kullanarak bir tane html report olusturacağız
         //bunun icinde ExtentHtmlReporter classindan bir object olusturmaliyiz
 
-        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
-        String path ="target/extentReport/"+date+"htmlReport.html";
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmm").format(LocalDateTime.now());
+        String path ="target/extentReport/"+testName+date+"htmlReport.html";
         extentHtmlReporter = new ExtentHtmlReporter(path);
 
         //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
@@ -61,8 +62,9 @@ public abstract class TestBase {
         //Bu html raporunda görmek isteyebileceğimiz herhangi bir bilgiyi asagidaki formatta ekleyebilirz
         extentReports.setSystemInfo("Enviroment","QA");
         extentReports.setSystemInfo("Browser",browser);
-        extentReports.setSystemInfo("Test Automation Engineer","QA-03 Team");
+        extentReports.setSystemInfo("Test Automation Engineer",engineer);
     }
+
 
 
 
@@ -161,7 +163,7 @@ public abstract class TestBase {
 
 
     //Create Account
-    public void createAccount(String email ,String pwd){
+    public void createAccount(String email ,String pwd,String name){
         Faker faker =new Faker();
 
         //go to url
@@ -171,7 +173,7 @@ public abstract class TestBase {
         driver.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
 
         // Name Value
-        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(faker.name().fullName());
+        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(name);
 
         //Email Value
         driver.findElement(By.xpath("(//input[@name='email'])[2]")).sendKeys(email);
@@ -198,7 +200,7 @@ public abstract class TestBase {
 
         //*Full Name Box
         WebElement firstName=driver.findElement(By.id("first_name"));
-        firstName.sendKeys(faker.name().firstName(),Keys.TAB,faker.name().lastName());
+        firstName.sendKeys(name,Keys.TAB,faker.name().lastName());
 
         //*Adress Box
         WebElement adressBox =driver.findElement(By.id("address1"));

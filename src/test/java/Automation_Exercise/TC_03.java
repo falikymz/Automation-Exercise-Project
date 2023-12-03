@@ -10,7 +10,7 @@ public class TC_03 extends TestBase {
     @Test
     public void Test() {
         //1. Launch browser
-        rapor("browser","automationexercise");
+        rapor("browser","automationexercise","TC_03");
         extentTest=extentReports.createTest("Login User with incorrect email and password","Test03");
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");

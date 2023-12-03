@@ -23,7 +23,7 @@ public class TC_24 extends TestBase {
 
     @Test
     public void test01() {
-        rapor("chrome","Test24 Otomation Exercise Testi");
+        rapor("chrome","Test24 Otomation Exercise Testi","TC_24");
         extentTest=extentReports.createTest("Automation Exercise","Test Case 24");
 
         //2. Navigate to url 'http://automationexercise.com'

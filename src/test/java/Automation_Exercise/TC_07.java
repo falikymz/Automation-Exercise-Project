@@ -16,7 +16,7 @@ public class TC_07 extends TestBase {
         // 1. Launch browser
 
         driver.get("https://www.google.com");
-        rapor("Chrome","Automation Exercise Test");
+        rapor("Chrome","Automation Exercise Test","TC_07");
         extentTest=extentReports.createTest("Automation Exercise", "Test Case 17");
 
 

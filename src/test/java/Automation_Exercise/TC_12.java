@@ -15,7 +15,7 @@ public class TC_12 extends TestBase {
     //Launch browser
     @Test
     public void test01() {
-        rapor("Chrome","ProductAddToCartTest");
+        rapor("Chrome","ProductAddToCartTest","TC_12");
         extentTest = extentReports.createTest("Execise Add to Cart Test","Test Steps");
         Actions actions = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;

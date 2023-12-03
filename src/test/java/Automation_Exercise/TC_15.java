@@ -22,7 +22,7 @@ public class TC_15 extends TestBase {
 
     @Test
     public void testCase_15() {
-        rapor("chrome","Automation Exercise Testi");
+        rapor("chrome","Automation Exercise Testi","TC_15");
         extentTest=extentReports.createTest("Place Order: Register before Checkout", "Test steps");
 
         //1. Launch browser
@@ -65,7 +65,7 @@ public class TC_15 extends TestBase {
         jsClick(gender);
 
         WebElement passwordInput = driver.findElement(By.xpath("//input[@id='password']"));
-        passwordInput.sendKeys(password, Keys.TAB);
+        passwordInput.sendKeys(password,Keys.TAB);
 
         WebElement day = driver.findElement(By.xpath("//select[@id='days']"));
         Select selectGun = new Select(day);
@@ -108,7 +108,7 @@ public class TC_15 extends TestBase {
         WebElement createAccount = driver.findElement(By.xpath("(//button[@class='btn btn-default'])[1]"));
         jsClick(createAccount);
 
-        extentTest.info("Kayıt ol bölümündeki tüm ayrıntılar dolduruldu ve hesap oluşturuldu");
+       extentTest.info("Kayıt ol bölümündeki tüm ayrıntılar dolduruldu ve hesap oluşturuldu");
 
 
         //6. Verify 'ACCOUNT CREATED!' and click 'Continue' button
@@ -236,17 +236,17 @@ public class TC_15 extends TestBase {
         extentTest.info("Ödeme ayrıntıları girildi");
 
         //15. Click 'Pay and Confirm Order' button
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        WebElement playAndConfirmOrderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='submit']")));
+
+        WebElement playAndConfirmOrderButton =driver.findElement(By.xpath("//button[@id='submit']"));
         jsClick(playAndConfirmOrderButton);
 
         extentTest.info("Öde ve Siparişi onayla butonuna tıklandı");
 
 
-        //16. Verify success message 'Your order has been placed successfully!'
+        //16. Verify  message 'Congratulations! Your order has been confirmed!'
 
-        String expectedMessage = "Your order has been placed successfully!";
-        WebElement actualMessage = driver.findElement(By.xpath("//div[@class='col-md-12 form-group']"));
+        String expectedMessage = "Congratulations! Your order has been confirmed!";
+        WebElement actualMessage = driver.findElement(By.xpath("//p[@style='font-size: 20px; font-family: garamond;']"));
 
         Assert.assertEquals(expectedMessage,actualMessage.getText());
 
@@ -270,6 +270,7 @@ public class TC_15 extends TestBase {
         extentTest.info("Devam butonuna tıklandı");
 
         extentReports.flush();
+
 
     }
 }

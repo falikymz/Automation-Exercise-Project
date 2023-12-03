@@ -13,7 +13,7 @@ public class TC_18 extends TestBase {
 
     @Test
     public void categoriesTest () {
-        rapor("chrome", "TC18 Test Raporu");
+        rapor("chrome", "TC18 Test Raporu","TC_18");
         extentTest=extentReports.createTest
                 ("Automation Exercise","View Category Products");
         // 1. Launch browser
@@ -34,7 +34,7 @@ public class TC_18 extends TestBase {
             // 4. 'Kadınlar' kategorisine tıklayın
 
             WebElement women = driver.findElement(By.xpath("(//i[@class='fa fa-plus'])[1]"));
-            women.click();
+            jsClick(women);
             waitForSecond(2);
             extentTest.info("Women menü calisti");
 
@@ -72,6 +72,8 @@ public class TC_18 extends TestBase {
         String menJeansText = driver.findElement(By.xpath("//h2[.='Men - Jeans Products']")).getText();
         Assert.assertTrue(menJeansText.contains("MEN - JEANS PRODUCTS"));
         extentTest.pass("Kullanici kategori sayfasina yönlendirildi");
+        extentReports.flush();
+
 
     }
 

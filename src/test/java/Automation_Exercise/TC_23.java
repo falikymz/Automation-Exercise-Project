@@ -14,7 +14,7 @@ public class TC_23 extends TestBase {
     Faker faker = new Faker();
     @Test
     public void testCase_23() {
-        rapor("chrome","Automation Exercise Testi");
+        rapor("chrome","Automation Exercise Testi","TC_23");
         extentTest=extentReports.createTest("Verify address details in checkout page", "Test steps");
 
         //1. Tarayıcıyı başlatın

@@ -14,7 +14,7 @@ public class TC_26 extends TestBase {
     @Test
     public void test1() {
 
-        rapor("browser","automationexercise");
+        rapor("browser","automationexercise","TC_26");
         extentTest = extentReports.createTest("Scroll-up functionality without using arrow","Test Steps");
         //Lunch Browser
         driver.get("https://www.google.com");

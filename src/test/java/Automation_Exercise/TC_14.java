@@ -17,7 +17,7 @@ public class TC_14 extends TestBase {
     @Test
     public void testCase14() {
         JavascriptExecutor js=(JavascriptExecutor)driver;
-        rapor("Edge","Automation Exercise Test Case 11");
+        rapor("Chrome","Automation Exercise ","TC_14");
         extentTest=extentReports.createTest("Automation Exercise","Test Case 14");
 
         //1. Launch browser
