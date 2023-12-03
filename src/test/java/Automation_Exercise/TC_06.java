@@ -47,7 +47,7 @@ public class TC_06 extends TestBase {
         String actualHomePageButtonColor = driver.findElement(By.xpath("//a[text()=' Home']")).getAttribute("style");
         String expectedHomePageButtonColor ="color: orange;";
         Assert.assertEquals(expectedHomePageButtonColor,actualHomePageButtonColor);
-        extentTest.info("//3.Verify that home page is visible successfully");
+        extentTest.info("Verify that home page is visible successfully");
         extentTest.pass("Test Pass");
 
 
@@ -101,7 +101,7 @@ public class TC_06 extends TestBase {
         extentTest.info("Verify success message 'Success! Your details have been submitted successfully.' is visible.");
         extentTest.pass("Test Pass");
 
-        extentReports.flush();
+        extentReports.flush(); //col-sm-9 padding-right
 
 
 
