@@ -30,7 +30,8 @@ public class TC_20 extends TestBase {
         Faker faker=new Faker();
         String eMail=faker.internet().emailAddress();
         String password=faker.internet().password();
-        createAccount(eMail,password);
+        createAccount(eMail,password,password);
+
 
 
 
@@ -69,13 +70,11 @@ public class TC_20 extends TestBase {
 
 
         //7. Verify all the products related to search are visible
-        String actualSearchedList = driver.findElement(By.xpath("(//div[@class='col-sm-4'])[2]")).getAttribute("style");
-        String expectedSearchedList ="color: brown;";
-        Assert.assertEquals(expectedSearchedList,actualSearchedList);
+        WebElement actualSearchedList = driver.findElement(By.xpath("(//div[@class='col-sm-4'])[2]"));
+        Assert.assertTrue(actualSearchedList.isDisplayed());
+
         extentTest.info("Verify user is navigated to ALL PRODUCTS page successfully");
         extentTest.pass("Test Pass");
-
-
 
 
 
@@ -108,10 +107,16 @@ public class TC_20 extends TestBase {
 
        // 11. Again, go to Cart page
 
-
+        driver.findElement(By.xpath("(//a[@href='/view_cart'])[1]")).click();
 
 
         //12. Verify that those products are visible in cart after login as well
+
+        WebElement loginWithCart=driver.findElement(By.xpath("//img[@src='get_product_picture/3']"));
+        Assert.assertTrue(loginWithCart.isDisplayed());
+        extentTest.info("Verified that products are visible in cart");
+        extentTest.pass("Test Passed");
+
 
 
 

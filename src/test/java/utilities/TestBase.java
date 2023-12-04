@@ -23,14 +23,14 @@ import java.time.format.DateTimeFormatter;
 
 public abstract class TestBase {
     protected WebDriver driver;
-    protected   ExtentReports extentReports;//raporlamayi baslatir
+    protected ExtentReports extentReports;//raporlamayi baslatir
 
-    protected   ExtentHtmlReporter extentHtmlReporter;//html formatinda rapor olusuturur
+    protected ExtentHtmlReporter extentHtmlReporter;//html formatinda rapor olusuturur
 
-    protected   ExtentTest extentTest; // Test adimlarina bilgi ekler
+    protected ExtentTest extentTest; // Test adimlarina bilgi ekler
 
 
-    public void rapor(String browser,String reportName,String testName,String engineer){
+    public void rapor(String browser, String reportName, String testName, String engineer) {
 
         /*
         1- ExtentReport classindan raporlamayi baslatmasi icin bir object olusturmaliyiz
@@ -39,14 +39,14 @@ public abstract class TestBase {
          */
 
         //bu object i raporlari olusturmak ve yonetmek icin kullanacacğız
-        extentReports=new ExtentReports();
+        extentReports = new ExtentReports();
 
         //Oncelikle olusturmak istedigimiz html reprotu projemizde nerede saklamak istiyorsak bir dosya yolu olusturmaliyiz
         //cunku bu pathi kullanarak bir tane html report olusturacağız
         //bunun icinde ExtentHtmlReporter classindan bir object olusturmaliyiz
 
         String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmm").format(LocalDateTime.now());
-        String path ="target/extentReport/"+testName+date+"htmlReport.html";
+        String path = "target/extentReport/" + testName + date + "htmlReport.html";
         extentHtmlReporter = new ExtentHtmlReporter(path);
 
         //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
@@ -60,12 +60,10 @@ public abstract class TestBase {
         extentHtmlReporter.config().setReportName(reportName);
 
         //Bu html raporunda görmek isteyebileceğimiz herhangi bir bilgiyi asagidaki formatta ekleyebilirz
-        extentReports.setSystemInfo("Enviroment","QA-03 Team");
-        extentReports.setSystemInfo("Browser",browser);
-        extentReports.setSystemInfo("Test Automation Engineer",engineer);
+        extentReports.setSystemInfo("Enviroment", "QA-03 Team");
+        extentReports.setSystemInfo("Browser", browser);
+        extentReports.setSystemInfo("Test Automation Engineer", engineer);
     }
-
-
 
 
     @Before
@@ -75,33 +73,33 @@ public abstract class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-        //  @After
-        //  public void tearDown() throws Exception {
-        //      driver.quit();
-        //  }
+    //  @After
+    //  public void tearDown() throws Exception {
+    //      driver.quit();
+    //  }
 
     //Select Visible Text DropDown
-    public void selectVisible (WebElement ddm,String option){
+    public void selectVisible(WebElement ddm, String option) {
         Select select = new Select(ddm);
         select.selectByVisibleText(option);
     }
 
     //Select index DropDown
-    public void selectIndex(WebElement ddm,int index){
-        Select select =new Select(ddm);
+    public void selectIndex(WebElement ddm, int index) {
+        Select select = new Select(ddm);
         select.selectByIndex(index);
     }
 
     //Select value  DropDown
-    public void selectValue (WebElement ddm,String option){
-        Select select =new Select(ddm);
+    public void selectValue(WebElement ddm, String option) {
+        Select select = new Select(ddm);
         select.selectByValue(option);
     }
 
     //Hard Wait
     public void waitForSecond(int saniye) {
         try {
-            Thread.sleep(saniye*1000);
+            Thread.sleep(saniye * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -118,37 +116,37 @@ public abstract class TestBase {
 
 
     //screenshot
-    public void screenShot(){
+    public void screenShot() {
 
         String date = DateTimeFormatter.ofPattern("ddMMyyyy-HHmmss").format(LocalDateTime.now());
-        String folderPath ="src/test/java/screenShots/"+date+"screenShot.png";
+        String folderPath = "src/test/java/screenShots/" + date + "screenShot.png";
         TakesScreenshot ts = (TakesScreenshot) driver;
 
         try {
-            Files.write(Paths.get(folderPath),ts.getScreenshotAs(OutputType.BYTES));
+            Files.write(Paths.get(folderPath), ts.getScreenshotAs(OutputType.BYTES));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     // webelement screenshot
-    public void screenshotOfWebElement(WebElement webElement){
+    public void screenshotOfWebElement(WebElement webElement) {
 
         String date = DateTimeFormatter.ofPattern("ddMMyyyy-HHmmss").format(LocalDateTime.now());
-        String folderPath ="src/test/java/screenShots/"+date+"webelementSS.png";
+        String folderPath = "src/test/java/screenShots/" + date + "webelementSS.png";
         TakesScreenshot ts = (TakesScreenshot) driver;
 
         try {
-            Files.write(Paths.get(folderPath),webElement.getScreenshotAs(OutputType.BYTES));
+            Files.write(Paths.get(folderPath), webElement.getScreenshotAs(OutputType.BYTES));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-        //JSexecutor click method
+    //JSexecutor click method
 
-    public void jsClick(WebElement webElement){
+    public void jsClick(WebElement webElement) {
 
         try {
             webElement.click();
@@ -156,14 +154,14 @@ public abstract class TestBase {
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
 
-            js.executeScript("arguments[0].click();",webElement);
+            js.executeScript("arguments[0].click();", webElement);
         }
     }
 
 
     //Create Account
-    public void createAccount(String email ,String pwd,String name){
-        Faker faker =new Faker();
+    public void createAccount(String email, String pwd, String name) {
+        Faker faker = new Faker();
 
         //go to url
         driver.get("https://www.automationexercise.com/");
@@ -185,29 +183,29 @@ public abstract class TestBase {
         genderButton.click();
 
         //*Password Box
-        WebElement pwdBox=driver.findElement(By.cssSelector("#password"));
+        WebElement pwdBox = driver.findElement(By.cssSelector("#password"));
         pwdBox.sendKeys(pwd);
 
         // Locate to Dropdown Menu
-        WebElement day =driver.findElement(By.xpath("//select[@id='days']"));
-        WebElement month =driver.findElement(By.xpath("//select[@id='months']"));
-        WebElement year =driver.findElement(By.xpath("//select[@id='years']"));
+        WebElement day = driver.findElement(By.xpath("//select[@id='days']"));
+        WebElement month = driver.findElement(By.xpath("//select[@id='months']"));
+        WebElement year = driver.findElement(By.xpath("//select[@id='years']"));
 
-        day.sendKeys("11",Keys.ENTER);
-        month.sendKeys("April",Keys.ENTER);
-        year.sendKeys("2004",Keys.ENTER);
+        day.sendKeys("11", Keys.ENTER);
+        month.sendKeys("April", Keys.ENTER);
+        year.sendKeys("2004", Keys.ENTER);
 
         //*Full Name Box
-        WebElement firstName=driver.findElement(By.id("first_name"));
-        firstName.sendKeys(name,Keys.TAB,faker.name().lastName());
+        WebElement firstName = driver.findElement(By.id("first_name"));
+        firstName.sendKeys(name, Keys.TAB, faker.name().lastName());
 
         //*Adress Box
-        WebElement adressBox =driver.findElement(By.id("address1"));
-        String address =faker.address().fullAddress();
+        WebElement adressBox = driver.findElement(By.id("address1"));
+        String address = faker.address().fullAddress();
         adressBox.sendKeys(address);
 
         //*Country Box
-        WebElement countryBox= driver.findElement(By.id("country"));
+        WebElement countryBox = driver.findElement(By.id("country"));
         countryBox.sendKeys("Canada");
 
         //*State Box
@@ -228,16 +226,16 @@ public abstract class TestBase {
 
     }
 
-        //***********************************************************************************************************
+    //***********************************************************************************************************
 
-    Faker faker=new Faker();
-    String firstName=faker.name().firstName();
-    String lastName=faker.name().lastName();
-    String emaill=faker.internet().emailAddress();
-    String password=faker.internet().password();
+    Faker faker = new Faker();
+    String firstName = faker.name().firstName();
+    String lastName = faker.name().lastName();
+    String emaill = faker.internet().emailAddress();
+    String password = faker.internet().password();
 
 
-    protected void registerTestBase(){
+    protected void registerTestBase() {
 
         driver.get("https://www.automationexercise.com/");
 
@@ -245,117 +243,109 @@ public abstract class TestBase {
         Assert.assertTrue(driver.findElement(By.tagName("h1")).isDisplayed());
 
 
-
         // Click on 'Signup / Login' button
-        WebElement webElement=driver.findElement(By.xpath("//a[@href='/login']"));
+        WebElement webElement = driver.findElement(By.xpath("//a[@href='/login']"));
         webElement.click();
 
 
-        WebElement name=driver.findElement(By.xpath("//input[@type='text']"));
+        WebElement name = driver.findElement(By.xpath("//input[@type='text']"));
 
-        name.sendKeys(firstName+lastName);
-
+        name.sendKeys(firstName + lastName);
 
 
         System.out.println("emaill = " + emaill);
-        WebElement email=driver.findElement(By.xpath("//input[@data-qa='signup-email']"));
+        WebElement email = driver.findElement(By.xpath("//input[@data-qa='signup-email']"));
         email.sendKeys(emaill);
 
         //Click 'Signup' button
         driver.findElement(By.xpath("//button[.='Signup']")).click();
 
 
-
         driver.findElement(By.id("password")).sendKeys(password);
 
-        WebElement days=driver.findElement(By.id("days"));
-        WebElement months=driver.findElement(By.id("months"));
-        WebElement years=driver.findElement(By.id("years"));
+        WebElement days = driver.findElement(By.id("days"));
+        WebElement months = driver.findElement(By.id("months"));
+        WebElement years = driver.findElement(By.id("years"));
 
 
-        Select selectDay =new Select(days);
+        Select selectDay = new Select(days);
 
-        Select selectMonth =new Select(months);
+        Select selectMonth = new Select(months);
 
-        Select selectYear =new Select(years);
+        Select selectYear = new Select(years);
 
-        int day= faker.number().numberBetween(1,31);
-        String dayStr=day+"";
+        int day = faker.number().numberBetween(1, 31);
+        String dayStr = day + "";
         selectDay.selectByValue(dayStr);
 
-        int month= faker.number().numberBetween(0,12);
+        int month = faker.number().numberBetween(0, 12);
 
         selectMonth.selectByIndex(month);
 
 
-
-        int yearss= faker.number().numberBetween(0,122);
+        int yearss = faker.number().numberBetween(0, 122);
 
         selectYear.selectByIndex(yearss);
 
 
-
         //. Select checkbox 'Sign up for our newsletter!'
-        WebElement cBox1=driver.findElement(By.id("newsletter"));
-        if (!cBox1.isSelected()){
+        WebElement cBox1 = driver.findElement(By.id("newsletter"));
+        if (!cBox1.isSelected()) {
 
             cBox1.click();
         }
 
 
-
         //Select checkbox "Receive special offers from our partners!"
-        WebElement cBox2=driver.findElement(By.id("optin"));
+        WebElement cBox2 = driver.findElement(By.id("optin"));
 
-        if (!cBox2.isSelected()){
+        if (!cBox2.isSelected()) {
 
             cBox2.click();
         }
 
         //Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
 
-        WebElement fist=driver.findElement(By.id("first_name"));
-        fist.sendKeys(firstName,Keys.TAB);
+        WebElement fist = driver.findElement(By.id("first_name"));
+        fist.sendKeys(firstName, Keys.TAB);
 
-        Actions actions=new Actions(driver);
+        Actions actions = new Actions(driver);
         actions.scrollToElement(driver.findElement(By.id("address2"))).perform();
 
-        WebElement last=driver.findElement(By.id("last_name"));
-        last.sendKeys(lastName,Keys.TAB);
+        WebElement last = driver.findElement(By.id("last_name"));
+        last.sendKeys(lastName, Keys.TAB);
 
-        WebElement company=driver.findElement(By.id("company"));
+        WebElement company = driver.findElement(By.id("company"));
 
 
-        company.sendKeys(faker.company().bs(),Keys.TAB);
+        company.sendKeys(faker.company().bs(), Keys.TAB);
 
-        WebElement adress1=driver.findElement(By.id("address1"));
+        WebElement adress1 = driver.findElement(By.id("address1"));
 
-        adress1.sendKeys(faker.address().fullAddress(),Keys.TAB);
+        adress1.sendKeys(faker.address().fullAddress(), Keys.TAB);
 
-        WebElement address2=driver.findElement(By.id("address2"));
-        address2.sendKeys(faker.address().fullAddress(),Keys.TAB);
+        WebElement address2 = driver.findElement(By.id("address2"));
+        address2.sendKeys(faker.address().fullAddress(), Keys.TAB);
 
-        WebElement countr=driver.findElement(By.id("country"));
-        int count=faker.number().numberBetween(0,7);
+        WebElement countr = driver.findElement(By.id("country"));
+        int count = faker.number().numberBetween(0, 7);
 
-        Select select=new Select(countr);
+        Select select = new Select(countr);
         select.selectByIndex(count);
 
-        WebElement state=driver.findElement(By.id("state"));
-        state.sendKeys(faker.address().state(),Keys.TAB);
+        WebElement state = driver.findElement(By.id("state"));
+        state.sendKeys(faker.address().state(), Keys.TAB);
 
-        WebElement city=driver.findElement(By.id("city"));
+        WebElement city = driver.findElement(By.id("city"));
         city.sendKeys(faker.address().city());
 
 
-        WebElement zipcode=driver.findElement(By.id("zipcode"));
-        zipcode.sendKeys(faker.address().zipCode(),Keys.TAB);
+        WebElement zipcode = driver.findElement(By.id("zipcode"));
+        zipcode.sendKeys(faker.address().zipCode(), Keys.TAB);
 
 
-
-        WebElement mobileNumber=driver.findElement(By.id("mobile_number"));
+        WebElement mobileNumber = driver.findElement(By.id("mobile_number"));
         mobileNumber.sendKeys(faker.phoneNumber().cellPhone());
-
 
 
         //13. Click 'Create Account button'
@@ -389,5 +379,6 @@ public abstract class TestBase {
     public String getPassword() {
         return password;
     }
+}
 
         //*************************************************************************************************************

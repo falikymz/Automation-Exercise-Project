@@ -15,7 +15,7 @@ public class TC_11 extends TestBase {
 
     @Test
     public void testCase11() {
-        rapor("Chrome","Automation Exercise Test");
+        rapor("Chrome","Automation Exercise Test","TC_11","Furkan Ali Kaymaz");
         extentTest=extentReports.createTest("Automation Exercise","Test Case 11");
 
         //1. Launch browser
