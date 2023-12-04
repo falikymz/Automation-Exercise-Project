@@ -15,13 +15,10 @@ public class TC_16 extends TestBase {
 
     @Test
     public void test16() {
-
-
+        rapor("Chrome","Automation Exercise ","TC_16","Huseyin Bakay");
 
         registerTestBase();//TestBase Classındaki bu method ile önce register olunmalı.
-
-        rapor("chrome","automationExercise");
-        extentTest=extentReports.createTest("Place Order: Login before Checkout","Test16");
+        extentTest=extentReports.createTest("Test Case 16: Place Order: Login before Checkout","Test Steps");
 
 //        1. Launch browser
 //        2. Navigate to url 'http://automationexercise.com'
@@ -34,10 +31,10 @@ public class TC_16 extends TestBase {
 
 
 
+
         //Click on 'Signup / Login' button
         driver.findElement(By.xpath("//a[@href='/login']")).click();
-        extentTest.info("\n" +
-                "'Register / Log In' button clicked");
+        extentTest.info("Fill email, password and click 'Login' button");
 
 
 //        5. Fill email, password and click 'Login' button
@@ -47,22 +44,25 @@ public class TC_16 extends TestBase {
         driver.findElement(By.name("password")).sendKeys(getPassword());
 
         driver.findElement(By.xpath("//button[.='Login']")).click();
-        extentTest.info("Fill email, password and click 'Login' button");
 
+        extentTest.info("User firstname and lastname displayed");
 
 //        6. Verify 'Logged in as username' at top
         String actualGetText=  driver.findElement(By.xpath("//li[10]")).getText();
         String expectedText="Logged in as "+getFirstName()+getLastName();
         Assert.assertEquals(expectedText,actualGetText);
         extentTest.info("User firstname and lastname displayed");
-
-
         Actions actions1=new Actions(driver);
 
 
+        for (int i = 0; i <1 ; i++) {
+
             actions1.sendKeys(Keys.PAGE_DOWN).perform();
 
+        }
+
         Faker faker=new Faker();
+
 //        7. Add products to cart
         int index=faker.number().numberBetween(1,4);
 
@@ -75,6 +75,7 @@ public class TC_16 extends TestBase {
 
 
         JavascriptExecutor js= (JavascriptExecutor) driver;
+        // js.executeScript("arguments[0].click",myChoose);
 
         WebElement contiue=driver.findElement(By.xpath("//button[.='Continue Shopping']"));
         js.executeScript("arguments[0].click()",contiue);
@@ -89,30 +90,28 @@ public class TC_16 extends TestBase {
         WebElement cartButton= driver.findElement(By.xpath("//a[@href='/view_cart']"));
 
         js.executeScript("arguments[0].click()",cartButton);
-         extentTest.info("Clicked 'Cart' button");
 
+        extentTest.info("Clicked 'Cart' button");
 
 
 //        9. Verify that cart page is displayed
         Assert.assertTrue(driver.findElement(By.xpath("(//table//tr//td[2])[1]")).isDisplayed());
-          extentTest.info("cart page is displayed") ;
 
+        extentTest.info("cart page is displayed") ;
 
 //        10. Click Proceed To Checkout
         driver.findElement(By.xpath("//a[.='Proceed To Checkout']")).click();
         extentTest.info("Proceed To Checkout button clicked");
 
-
-
 //        11. Verify Address Details and Review Your Order
 
+        //(//li[@class='address_address1 address_address2'])[1]
 
         String ortakAdresDelivery=driver.findElement(By.id("address_delivery")).getText().substring(21);
         String ortakAdresShipp=driver.findElement(By.id("address_invoice")).getText().substring(20);
 
         Assert.assertEquals(ortakAdresShipp,ortakAdresDelivery);
         extentTest.info("Verified Address Details");
-
 //        12. Enter description in comment text area and click 'Place Order'
 
         actions.sendKeys(Keys.END).perform();
@@ -121,7 +120,6 @@ public class TC_16 extends TestBase {
         actions.scrollToElement(webElementPlaceOrder).perform();
         driver.findElement(By.name("message")).sendKeys("Acil kargolayabilir misiniz?");
         webElementPlaceOrder.click();
-
         extentTest.info("Entered the description in the comment text field and clicked 'Place Order'");
 
 //        13. Enter payment details: Name on Card, Card Number, CVC, Expiration date
@@ -131,38 +129,35 @@ public class TC_16 extends TestBase {
         driver.findElement(By.name("expiry_month")).sendKeys(faker.number().numberBetween(1,12)+"",Keys.TAB);
 
         driver.findElement(By.name("expiry_year")).sendKeys(faker.number().numberBetween(1950,2035)+"",Keys.TAB);
-        actions1.sendKeys(Keys.PAGE_DOWN).perform();
-
         extentTest.info("Entered payment details");
 
 //        14. Click 'Pay and Confirm Order' button
        WebElement submit= driver.findElement(By.id("submit"));
-        jsClick(submit);
-
+       jsClick(submit);
         extentTest.info("Clicked Pay and Confirm Order' button ");
-
-
-
 //        15. Verify success message 'Your order has been placed successfully!'
-        WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[@id='success_message']"))));
 
-           WebElement succesAlert=driver.findElement(By.xpath("//div[@id='success_message']"));
-        System.out.println("succesAlert.getText() = " + succesAlert.getText());
 
+        WebElement succesAlert=driver.findElement(By.xpath("(//div[@class='alert-success alert'])[1]"));
+
+
+        String text = succesAlert.getAttribute("textContent");
+
+        System.out.println("text = " + text);
+
+
+        Assert.assertTrue(text.contains("Your order has been"));
+
+
+
+        //Assert.assertTrue(succesAlert.isDisplayed());
         extentTest.info("Verified success message");
-
-
-
-
-
-
+        System.out.println("succesAlert.getText() = " + succesAlert.getText());
 
 
 //        16. Click 'Delete Account' button
         driver.findElement(By.xpath("//a[@href='/delete_account']")).click();
         extentTest.info("Clicked 'Delete Account' button");
-
 //        17. Verify 'ACCOUNT DELETED!' and click 'Continue' button
         String deletedMessage= driver.findElement(By.xpath("//h2[@class='title text-center']")).getText();
         Assert.assertEquals("ACCOUNT DELETED!",deletedMessage);
@@ -170,11 +165,6 @@ public class TC_16 extends TestBase {
         extentTest.info("Verified 'ACCOUNT DELETED!' and clicked 'Continue' button");
         extentTest.pass("Test passed");
         extentReports.flush();
-
-
-
-
-
 
     }
 
