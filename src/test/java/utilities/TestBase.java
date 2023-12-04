@@ -30,7 +30,8 @@ public abstract class TestBase {
     protected   ExtentTest extentTest; // Test adimlarina bilgi ekler
 
 
-    public void rapor(String browser,String reportName){
+    public void rapor(String browser,String reportName,String testName,String engineer){
+
         /*
         1- ExtentReport classindan raporlamayi baslatmasi icin bir object olusturmaliyiz
         2- ExtentHtmlReporter class indan raporlari html formatinda olusturmasi icin bir object olusturmaliyiz
@@ -44,8 +45,8 @@ public abstract class TestBase {
         //cunku bu pathi kullanarak bir tane html report olusturacağız
         //bunun icinde ExtentHtmlReporter classindan bir object olusturmaliyiz
 
-        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
-        String path ="target/extentReport/"+date+"htmlReport.html";
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmm").format(LocalDateTime.now());
+        String path ="target/extentReport/"+testName+"htmlReport.html";
         extentHtmlReporter = new ExtentHtmlReporter(path);
 
         //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
@@ -59,10 +60,11 @@ public abstract class TestBase {
         extentHtmlReporter.config().setReportName(reportName);
 
         //Bu html raporunda görmek isteyebileceğimiz herhangi bir bilgiyi asagidaki formatta ekleyebilirz
-        extentReports.setSystemInfo("Enviroment","QA");
+        extentReports.setSystemInfo("Enviroment","QA-03 Team");
         extentReports.setSystemInfo("Browser",browser);
-        extentReports.setSystemInfo("Test Automation Engineer","QA-03 Team");
+        extentReports.setSystemInfo("Test Automation Engineer",engineer);
     }
+
 
 
 
@@ -74,10 +76,10 @@ public abstract class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-   //  @After
-   //  public void tearDown() throws Exception {
-   //      driver.quit();
-   //  }
+        //  @After
+        //  public void tearDown() throws Exception {
+        //      driver.quit();
+        //  }
 
     //Select Visible Text DropDown
     public void selectVisible (WebElement ddm,String option){
@@ -144,28 +146,24 @@ public abstract class TestBase {
         }
     }
 
-<<<<<<< HEAD
-    //JSexecutor click method
 
-=======
->>>>>>> kfurkanklc
+        //JSexecutor click method
+
     public void jsClick(WebElement webElement){
 
         try {
             webElement.click();
         } catch (Exception e) {
-<<<<<<< HEAD
+
             JavascriptExecutor js = (JavascriptExecutor) driver;
-=======
-            JavascriptExecutor js= (JavascriptExecutor) driver;
->>>>>>> kfurkanklc
+
             js.executeScript("arguments[0].click();",webElement);
         }
     }
 
-<<<<<<< HEAD
+
     //Create Account
-    public void createAccount(String email ,String pwd){
+    public void createAccount(String email ,String pwd,String name){
         Faker faker =new Faker();
 
         //go to url
@@ -175,7 +173,7 @@ public abstract class TestBase {
         driver.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
 
         // Name Value
-        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(faker.name().fullName());
+        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(name);
 
         //Email Value
         driver.findElement(By.xpath("(//input[@name='email'])[2]")).sendKeys(email);
@@ -202,7 +200,7 @@ public abstract class TestBase {
 
         //*Full Name Box
         WebElement firstName=driver.findElement(By.id("first_name"));
-        firstName.sendKeys(faker.name().firstName(),Keys.TAB,faker.name().lastName());
+        firstName.sendKeys(name,Keys.TAB,faker.name().lastName());
 
         //*Adress Box
         WebElement adressBox =driver.findElement(By.id("address1"));
@@ -231,7 +229,7 @@ public abstract class TestBase {
 
     }
 
-//***********************************************************************************************************
+        //***********************************************************************************************************
 
 
     Faker faker=new Faker();
@@ -312,7 +310,6 @@ public abstract class TestBase {
         WebElement cBox2=driver.findElement(By.id("optin"));
 
         if (!cBox2.isSelected()){
-
             cBox2.click();
         }
 
@@ -323,7 +320,6 @@ public abstract class TestBase {
 
         Actions actions=new Actions(driver);
         actions.scrollToElement(driver.findElement(By.id("address2"))).perform();
-
         WebElement last=driver.findElement(By.id("last_name"));
         last.sendKeys(lastName,Keys.TAB);
 
@@ -351,25 +347,17 @@ public abstract class TestBase {
         WebElement city=driver.findElement(By.id("city"));
         city.sendKeys(faker.address().city());
 
-
         WebElement zipcode=driver.findElement(By.id("zipcode"));
         zipcode.sendKeys(faker.address().zipCode(),Keys.TAB);
-
-
 
         WebElement mobileNumber=driver.findElement(By.id("mobile_number"));
         mobileNumber.sendKeys(faker.phoneNumber().cellPhone());
 
-
-
-
         //13. Click 'Create Account button'
-        driver.findElement(By.xpath("//button[.='Create Account']")).click();
-
+        driver.findElement(By.xpath("//button[.='Create Account']")).submit();
         driver.findElement(By.xpath("//a[.='Continue']")).click();
 
         driver.findElement(By.xpath("//a[@href='/logout']")).click();
-
         driver.navigate().refresh();
 
         driver.findElement(By.xpath("//a[@style='color: orange;']")).click();
@@ -390,15 +378,10 @@ public abstract class TestBase {
     public String getEmaill() {
         return emaill;
     }
-
     public String getPassword() {
         return password;
     }
 
-//*************************************************************************************************************
-=======
->>>>>>> kfurkanklc
-
-
+        //*************************************************************************************************************
 
 }
