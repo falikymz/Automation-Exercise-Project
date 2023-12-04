@@ -30,8 +30,8 @@ public class TC_06 extends TestBase {
 
     @Test
     public void testCase06() {
-        rapor("Chrome","Automation Exercise Test");
-        extentTest=extentReports.createTest("Automation Exercise","Test Case 06");
+        rapor("Chrome","Automation Exercise Test","TC_06","Aysegul Temel");
+        extentTest=extentReports.createTest("Automation Exercise","Test Steps");
 
 
 

@@ -1,5 +1,6 @@
 package Automation_Exercise;
 
+import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -26,7 +27,14 @@ public class TC_20 extends TestBase {
 
     @Test
     public void testCase20() {
-        rapor("Chrome","Automation Exercise Test");
+        Faker faker=new Faker();
+        String eMail=faker.internet().emailAddress();
+        String password=faker.internet().password();
+        createAccount(eMail,password);
+
+
+
+        rapor("Chrome","Automation Exercise Test","TC_20","Aysegul Temel");
         extentTest=extentReports.createTest("Automation Exercise","Test Case 20");
 
         //1. Launch browser
@@ -61,11 +69,11 @@ public class TC_20 extends TestBase {
 
 
         //7. Verify all the products related to search are visible
-       /* String actualSearchedList = driver.findElement(By.xpath("//div[@class='col-sm-9 padding-right']")).getAttribute("h2");
-        String expectedSearchedList ="title text-center";
+        String actualSearchedList = driver.findElement(By.xpath("(//div[@class='col-sm-4'])[2]")).getAttribute("style");
+        String expectedSearchedList ="color: brown;";
         Assert.assertEquals(expectedSearchedList,actualSearchedList);
         extentTest.info("Verify user is navigated to ALL PRODUCTS page successfully");
-        extentTest.pass("Test Pass");*/
+        extentTest.pass("Test Pass");
 
 
 
@@ -73,26 +81,36 @@ public class TC_20 extends TestBase {
 
         //8. Add those products to cart
         WebElement addToCart =driver.findElement(By.xpath("(//a[@data-product-id='3'])[2]"));
+        jsClick(addToCart);
 
 
 
 
 
         //9. Click 'Cart' button and verify that products are visible in cart
-        /*driver.findElement(By.xpath("")).click();
-        String actualPrdctsInCart=driver.findElement(By.xpath("//img[@src='get_product_picture/3']")).getAttribute("style");
-        String expectedactualPrdctsInCart="width:80px; height: 80px";
-        Assert.assertEquals(expectedactualPrdctsInCart,actualPrdctsInCart);
+        driver.findElement(By.xpath("//u[text()='View Cart']")).click();
+        WebElement actualPrdctsInCart=driver.findElement(By.xpath("//img[@src='get_product_picture/3']"));
+        Assert.assertTrue(actualPrdctsInCart.isDisplayed());
         extentTest.info("Verified that products are visible in cart");
         extentTest.pass("Test Passed");
 
 
-
-         */
        // 10. Click 'Signup / Login' button and submit login details
+        driver.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
+
+        WebElement userName=driver.findElement(By.xpath("//input[@data-qa='login-email']"));
+        WebElement userPassword=driver.findElement(By.xpath("//input[@data-qa='login-password']"));
+
+        userName.sendKeys(eMail);
+        userPassword.sendKeys(password,Keys.ENTER);
+
 
 
        // 11. Again, go to Cart page
+
+
+
+
         //12. Verify that those products are visible in cart after login as well
 
 
