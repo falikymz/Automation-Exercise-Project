@@ -13,12 +13,19 @@ import utilities.TestBase;
 public class TC_02 extends TestBase {
     @Test
     public void homePageTest() {
-        rapor("chrome", "TC02 Test Raporu");
+        Faker faker =new Faker();
+        rapor("Chrome", "Automation Exercise ","TC_02","Selma Simsek");
         extentTest=extentReports.createTest
-                ("Automation Exercise"," Login User with correct email and password");
-        String email = "silver.syed@forkshape.com";
-        String username = "silver";
-        String password = "silver123";
+                ("Test Case 2: Login User with correct email and password","Test Steps");
+       // String email = "silver.syed@forkshape.com";
+        String email =faker.internet().emailAddress();
+       // String username = "silver";
+        String username =faker.name().firstName() ;
+       // String password = "silver123";
+       String password =faker.internet().password();
+        createAccount(email,password,username);
+
+
 
         // 1. Launch browser
         // 1. Tarayıcıyı başlatın
@@ -61,9 +68,8 @@ public class TC_02 extends TestBase {
         emailTextBox.sendKeys(email,Keys.TAB,password,Keys.TAB,Keys.ENTER);
         waitForSecond(3);
         String loggedInAsUsernameText =driver.findElement
-                        (By.xpath("//a [.=' Logged in as silver']"))
-                .getText();
-        Assert.assertEquals("Logged in as "+username , loggedInAsUsernameText);
+                        (By.xpath("//b")).getText();
+        Assert.assertEquals(username , loggedInAsUsernameText);
 
 
         // 9. Click 'Delete Account' button
@@ -110,7 +116,7 @@ public class TC_02 extends TestBase {
         Select selectYears = new Select(year);
         selectYears.selectByVisibleText("2005");
 
-        Faker faker = new Faker();
+
         WebElement firstName = driver.findElement(By.xpath("//input[@id='first_name']"));
         firstName.sendKeys(faker.name().firstName(),Keys.TAB,faker.name().lastName(),Keys.TAB,
                 faker.company().name(),Keys.TAB,faker.address().streetAddress(),Keys.TAB,faker.address().streetAddress());
@@ -124,7 +130,7 @@ public class TC_02 extends TestBase {
                 faker.currency().code(),Keys.TAB,faker.phoneNumber().cellPhone(),Keys.TAB,Keys.ENTER);
 
 
-
+        extentReports.flush();
 
     }
 

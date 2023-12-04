@@ -23,8 +23,8 @@ public class TC_24 extends TestBase {
 
     @Test
     public void test01() {
-        rapor("chrome","Test24 Otomation Exercise Testi");
-        extentTest=extentReports.createTest("Automation Exercise","Test Case 24");
+        rapor("Chrome","Automation Exercise ","TC_24","Furkan Kılıc");
+        extentTest=extentReports.createTest("Test Case 24: Download Invoice after purchase order","Test Steps");
 
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
@@ -251,19 +251,17 @@ public class TC_24 extends TestBase {
         String userHome = System.getProperty("user.home");
         String folderPath="\\Downloads\\invoice.txt";
         String dynamicPath =userHome+folderPath;
-        Path path = Paths.get(dynamicPath);
-
 
           try {
-           Files.delete(path);
+           Files.delete(Paths.get(dynamicPath));
            System.out.println("File deleted");
           } catch (IOException e) {
            System.out.println("The specified file could not be deleted. !!!!");
           }
 
          driver.findElement(By.xpath("//*[@class='btn btn-default check_out']")).click();
-         waitForSecond(2);
-        Assert.assertTrue(Files.exists(path));
+         waitForSecond(3);
+        Assert.assertTrue(Files.exists(Paths.get(dynamicPath)));
 
         extentTest.info("Click 'Download Invoice' button and verify invoice is downloaded successfully.");
         extentTest.pass("Test pass");

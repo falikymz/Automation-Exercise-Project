@@ -14,8 +14,8 @@ public class TC_26 extends TestBase {
     @Test
     public void test1() {
 
-        rapor("browser","automationexercise");
-        extentTest = extentReports.createTest("Scroll-up functionality without using arrow","Test Steps");
+        rapor("Chrome","Automation Exercise ","TC_26","Gulsen Tekeli");
+        extentTest = extentReports.createTest("Test Case 26: Verify Scroll Up without 'Arrow' button and Scroll Down functionality","Test Steps");
         //Lunch Browser
         driver.get("https://www.google.com");
         //Navigate to url

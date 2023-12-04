@@ -15,8 +15,8 @@ public class TC_10 extends TestBase {
     public void Test() {
 
         //1. Launch browser
-        rapor("browser","automationexercise");
-        extentTest=extentReports.createTest("Test Case 10: Verify Subscription in home page","Test10");
+        rapor("Chrome","Automation Exercise ","TC_10","Rabia Koc");
+        extentTest=extentReports.createTest("Test Case 10: Verify Subscription in home page","Test Steps");
 
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
@@ -46,6 +46,7 @@ public class TC_10 extends TestBase {
         Assert.assertEquals("You have been successfully subscribed!",actualSubscribeSuccessMessage);
         extentTest.info("Verify success message 'You have been successfully subscribed!' is visible.");
         extentTest.pass("Test Pass");
+        extentReports.flush();
 
     }
 }

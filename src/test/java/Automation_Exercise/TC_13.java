@@ -11,8 +11,8 @@ import utilities.TestBase;
 public class TC_13 extends TestBase {
     @Test
     public void testCase13() {
-        rapor("Chrome","AutomationExerciseTest");
-        extentTest= extentReports.createTest("Automation Exercise Negative Test ","Test Steps");
+        rapor("Chrome","Automation Exercise ","TC_13","Ibrahim Akar");
+        extentTest= extentReports.createTest("Test Case 13: Verify Product quantity in Cart","Test Steps");
 
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'

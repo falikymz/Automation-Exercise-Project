@@ -17,8 +17,14 @@ public class TC_01 extends TestBase {
         Faker faker= new Faker();
     @Test
     public void test1() {
+
+
         rapor("Chrome","Automationexercise","TC_01","Gulsen Tekeli");
         extentTest = extentReports.createTest("Register User","Test Steps");
+        rapor("Chrome","Automation Exercise ","TC_01","Gulsen Tekeli");
+        extentTest = extentReports.createTest("Test Case 1: Register User","Test Steps");
+
+
 
         //Lunch Browser
         driver.get("https://www.google.com");

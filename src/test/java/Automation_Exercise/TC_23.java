@@ -14,25 +14,25 @@ public class TC_23 extends TestBase {
     Faker faker = new Faker();
     @Test
     public void testCase_23() {
-        rapor("chrome","Automation Exercise Testi");
-        extentTest=extentReports.createTest("Verify address details in checkout page", "Test steps");
+        rapor("Chrome","Automation Exercise ","TC_23","Rumeysa Aslan");
+        extentTest=extentReports.createTest("Test Case 23: Verify address details in checkout page", "Test steps");
 
-        //1. Tarayıcıyı başlatın
-        //2. 'http://automationexercise.com' URL'sine gidin
+        //1. Launch browser
+        //2. Navigate to url 'http://automationexercise.com'
         driver.get("https://www.automationexercise.com/");
-        extentTest.info("Kullanıcı Automation Exercise anasayfasına gider.");
+        extentTest.info("The user goes to the Automation Exercise homepage.");
 
-        //3. Ana sayfanın başarıyla göründüğünü doğrulayın
+        //3. Verify that home page is visible successfully
         WebElement homeButton = driver.findElement(By.xpath("//a[@style='color: orange;']"));
         Assert.assertTrue(homeButton.isDisplayed());
-        extentTest.pass("Anasayfanın başarıyla görüntülendiği doğrulandı");
+        extentTest.pass("The successful display of the homepage has been confirmed");
 
-        //4. 'Kayıt Ol / Giriş Yap' butonuna tıklayın
+        //4. Click 'Signup / Login' button
         WebElement signupLogin = driver.findElement(By.xpath("//a[@href='/login']"));
         jsClick(signupLogin);
-        extentTest.info("Kayıt ol/Giriş yap butonuna tıklandı");
+        extentTest.info("The registration/login button has been clicked");
 
-        //5. Kayıt ol bölümündeki tüm ayrıntıları doldurun ve hesap oluşturun
+        //5. Fill all details in Signup and create account
 
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
@@ -98,29 +98,29 @@ public class TC_23 extends TestBase {
         WebElement createAccount = driver.findElement(By.xpath("(//button[@class='btn btn-default'])[1]"));
         jsClick(createAccount);
 
-        extentTest.info("Kayıt ol bölümündeki tüm ayrıntılar dolduruldu ve hesap oluşturuldu");
+        extentTest.info("All details in the registration section have been filled out, and the account has been created");
 
 
-        //6. 'HESAP OLUŞTURULDU!' seçeneğini doğrulayın ve 'Devam' düğmesini tıklayın
+        //6. Verify 'ACCOUNT CREATED!' and click 'Continue' button
 
         String expectedAccountCreated = "ACCOUNT CREATED!";
         String actualAccountCreated = driver.findElement(By.xpath("//b[text()='Account Created!']")).getText();
 
         Assert.assertEquals(expectedAccountCreated,actualAccountCreated);
-        extentTest.pass("Hesap Oluşturuldu! seçeneği doğrulandı");
+        extentTest.pass("The 'Account created!' option has been confirmed");
 
         WebElement continueButton = driver.findElement(By.xpath("//a[@class='btn btn-primary']"));
         jsClick(continueButton);
-        extentTest.info("Devam butonuna tıklandı");
+        extentTest.info("The 'Continue' button has been clicked");
 
 
-        //7. Üstteki 'Kullanıcı adı olarak oturum açıldı' seçeneğini doğrulayın
+        //7. Verify ' Logged in as username' at top
         WebElement logged = driver.findElement(By.xpath("(//a)[11]"));
 
         Assert.assertTrue(logged.isDisplayed());
-        extentTest.pass("Kullanıcı adı olarak oturum açıldı seçeneği doğrulandı");
+        extentTest.pass("The option to log in with the username has been confirmed");
 
-        //8. Ürünleri sepete ekleyin
+        //8. Add products to cart
 
         WebElement productsButton = driver.findElement(By.xpath("//a[@href='/products']"));
         jsClick(productsButton);
@@ -133,31 +133,31 @@ public class TC_23 extends TestBase {
 
         WebElement continueShoppingButton = driver.findElement(By.xpath("//button[@class='btn btn-success close-modal btn-block']"));
         jsClick(continueShoppingButton);
-        extentTest.info("Ürün sepete eklendi");
+        extentTest.info("The product has been added to the cart");
 
 
 
-        //9. 'Sepet' düğmesine tıklayın
+        //9. Click 'Cart' button
 
         WebElement cartButton = driver.findElement(By.xpath("//a[@href='/view_cart']"));
         jsClick(cartButton);
 
-        extentTest.info("Sepet butonuna tıklandı");
+        extentTest.info("The cart button has been clicked");
 
-        //10. Sepet sayfasının görüntülendiğini doğrulayın
+        //10. Verify that cart page is displayed
         WebElement shoppingCartText = driver.findElement(By.xpath("//li[@class='active']"));
         Assert.assertTrue(shoppingCartText.isDisplayed());
 
-        extentTest.pass("Sepet sayfasının görüntülendiği doğrulandı");
+        extentTest.pass("The display of the cart page has been confirmed");
 
-        //11. Ödeme İşlemine Devam Et'e tıklayın
+        //11. Click Proceed To Checkout
 
         WebElement proceedToCheckout = driver.findElement(By.xpath("//a[@class='btn btn-default check_out']"));
         jsClick(proceedToCheckout);
 
-        extentTest.info("Ödeme işlemine devam et butonuna tıklandı");
+        extentTest.info("The 'Proceed to payment' button has been clicked");
 
-        //12. Teslimat adresinin hesap kaydı sırasında girilen adresle aynı olduğunu doğrulayın
+        //12. Verify that the delivery address is same address filled at the time registration of account
         String actualFirstNameLastName = driver.findElement(By.xpath("//li[@class='address_firstname address_lastname']")).getText();
         String expectedFirstNameLastName = "Mrs. "+firstName+" "+lastName;
 
@@ -187,11 +187,11 @@ public class TC_23 extends TestBase {
 
         Assert.assertEquals(expectedMobileNumber,actualMobileNumber);
 
-        extentTest.pass("Teslimat Adres ayrıntıları doğrulandı");
+        extentTest.pass("The delivery address details have been confirmed");
 
 
 
-        //13. Fatura adresinin, hesap kaydı sırasında girilen adresle aynı olduğunu doğrulayın
+        //13. Verify that the billing address is same address filled at the time registration of account
         String actualFirstNameLastNameBA=driver.findElement(By.xpath("(//li[@class='address_firstname address_lastname'])[2]")).getText();
         String expectedFirstNameLastNameBA = "Mrs. "+firstName+" "+lastName;
 
@@ -218,28 +218,28 @@ public class TC_23 extends TestBase {
 
         Assert.assertEquals(expectedMobileNumberBA,actualMobileNumberBA);
 
-        extentTest.pass("Fatura Adres ayrıntıları doğrulandı");
+        extentTest.pass("The billing address details have been confirmed");
 
 
 
-        //14. 'Hesabı Sil' düğmesine tıklayın
+        //14. Click 'Delete Account' button
 
         WebElement deleteAccountButton = driver.findElement(By.xpath("(//a[@style='color:brown;'])[2]"));
         jsClick(deleteAccountButton);
 
-        extentTest.info("Hesabı sil butonuna tıklandı");
+        extentTest.info("The 'Delete account' button has been clicked");
 
-        //15. 'HESAP SİLİNDİ!' seçeneğini doğrulayın ve 'Devam' düğmesini tıklayın
+        //15. Verify 'ACCOUNT DELETED!' and click 'Continue' button
 
         String expectedAccountDeleted = "ACCOUNT DELETED!";
         String actualAccuontDeleted = driver.findElement(By.xpath("//h2[@class='title text-center']")).getText();
 
         Assert.assertEquals(expectedAccountDeleted,actualAccuontDeleted);
-        extentTest.pass("Hesap Silindi! seçeneği doğrulandı");
+        extentTest.pass("The 'Account deleted!' option has been confirmed");
 
         WebElement continueButtonn = driver.findElement(By.xpath("//a[@class='btn btn-primary']"));
         jsClick(continueButtonn);
-        extentTest.info("Devam butonuna tıklandı");
+        extentTest.info("The 'Continue' button has been clicked");
 
         extentReports.flush();
 

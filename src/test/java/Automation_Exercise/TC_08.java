@@ -13,9 +13,9 @@ public class TC_08 extends TestBase {
     @Test
     public void test01() {
 
-        rapor("chrome", "TC08 Test Raporu");
+        rapor("Chrome", "Automation Exercise ","TC_08","Selma Simsek");
         extentTest=extentReports.createTest
-                ("Automation Exercise","Verify All Products and product detail page");
+                ("Test Case 8: Verify All Products and product detail page","Test Steps");
 
         // 1. Tarayıcıyı başlatın
         //1.Launch browser
@@ -64,7 +64,7 @@ public class TC_08 extends TestBase {
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         WebElement erstProdukt = driver.findElement
                 (By.xpath("//a[@href='/product_details/1']"));
-        erstProdukt.click();
+        jsClick(erstProdukt);
         String productDetailUrl = driver.getCurrentUrl();
         Assert.assertTrue(productDetailUrl.contains("product_details"));
         extentTest.info("Kullanıcı ürün detay sayfasına yönlendirildi");
@@ -117,8 +117,7 @@ public class TC_08 extends TestBase {
         Assert.assertTrue(productBrand.isDisplayed());
         extentTest.info("productBrand görünür oldugu dogrulandi");
 
+     extentReports.flush();
     }
-
-
 }
 

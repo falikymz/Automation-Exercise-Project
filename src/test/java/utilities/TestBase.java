@@ -46,7 +46,11 @@ public abstract class TestBase {
         //bunun icinde ExtentHtmlReporter classindan bir object olusturmaliyiz
 
         String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmm").format(LocalDateTime.now());
+<<<<<<< HEAD
         String path ="target/extentReport/"+testName+"htmlReport.html";
+=======
+        String path ="target/extentReport/"+testName+date+"htmlReport.html";
+>>>>>>> master
         extentHtmlReporter = new ExtentHtmlReporter(path);
 
         //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
@@ -145,9 +149,36 @@ public abstract class TestBase {
             throw new RuntimeException(e);
         }
     }
+    // Product menüye click yapmak icin olusturuldu
+    public void productMenüClick() {
+        WebElement produckt = driver.findElement
+                (By.xpath("//a[@href='/products']"));
+        produckt.click();
+        waitForSecond(2);
+    }
+    // ilk ürüne click yapmak icin olusturuldu
+    public void erstProduckClick(){
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        WebElement erstProdukt = driver.findElement
+                (By.xpath("//a[@href='/product_details/1']"));
+        erstProdukt.click();
+    }
+    // sayfayi bir kez asagiya kaydirmak icin olusturuldu
+    public void scroll(){
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+    }
+    public void getUrl() {
+        driver.get("http://automationexercise.com");
+        waitForSecond(2);
+    }
+
+
 
 
         //JSexecutor click method
+
 
     public void jsClick(WebElement webElement){
 
@@ -382,6 +413,6 @@ public abstract class TestBase {
         return password;
     }
 
-        //*************************************************************************************************************
+
 
 }

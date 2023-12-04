@@ -15,15 +15,16 @@ public class TC_19 extends TestBase {
     public void test01() {
 
 
-        rapor("chrome","Test19 Otomation Exercise Testi");
-        extentTest=extentReports.createTest("Automation Exercise","Test Case 19");
+        rapor("Chrome","Automation Exercise ","TC_19","Furkan Kılıc");
+        extentTest=extentReports.createTest("Test Case 19: View & Cart Brand Products","Test Steps");
 
         //Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
         extentTest.info("User goes to Automation Exercise home page.");
 
         //Click on 'Products' button
-        driver.findElement(By.xpath("//a[@href='/products']")).click();
+       WebElement product = driver.findElement(By.xpath("//a[@href='/products']"));
+       jsClick(product);
         extentTest.info("Click on 'Products' button");
 
         Actions actions = new Actions(driver);
@@ -36,22 +37,24 @@ public class TC_19 extends TestBase {
         extentTest.pass("Test pass");
 
         //Click on any brand name
-        driver.findElement(By.xpath("//a[@href='/brand_products/Polo']")).click();
+        WebElement poloButton =  driver.findElement(By.xpath("//a[@href='/brand_products/Polo']"));
+        jsClick(poloButton);
         extentTest.info("Click on any brand name");
 
         //Verify that user is navigated to brand page and brand products are displayed
         WebElement poloBrand = driver.findElement(By.xpath("//*[@class='title text-center']"));
-        WebElement HM = driver.findElement(By.xpath("//a[@href='/brand_products/H&M']"));
+        WebElement scrollHM = driver.findElement(By.xpath("//a[@href='/brand_products/H&M']"));
         Assert.assertTrue(poloBrand.isDisplayed());
         extentTest.info("Verify that user is navigated to brand page and brand products are displayed");
         extentTest.pass("Test pass");
-        actions.scrollToElement(HM).perform();
+         actions.scrollToElement(scrollHM).perform();
 
 
 
         //On left side bar, click on any other brand link
-        driver.findElement(By.xpath("//a[@href='/brand_products/H&M']")).click();
-        extentTest.info("On left side bar, click on any other brand link");
+       WebElement HMButton = driver.findElement(By.xpath("//a[@href='/brand_products/H&M']"));
+       jsClick(HMButton);
+       extentTest.info("On left side bar, click on any other brand link");
 
         //Verify that user is navigated to that brand page and can see products
         WebElement hmBrand = driver.findElement(By.xpath("//*[@class='title text-center']"));
