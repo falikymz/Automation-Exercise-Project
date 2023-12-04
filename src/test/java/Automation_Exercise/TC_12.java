@@ -32,7 +32,7 @@ public class TC_12 extends TestBase {
 
         //3-Click 'Products' button
         WebElement productsButton = driver.findElement(By.xpath("//*[@href='/products']"));
-        productsButton.click();
+        js.executeScript("arguments[0].click();",productsButton);
 
 
         //4-Hover over first product and click 'Add to cart'
@@ -43,12 +43,13 @@ public class TC_12 extends TestBase {
 
         actions.moveToElement(firstProduct).perform();
         WebElement addToCartFirstProduct = driver.findElement(By.xpath("(//*[@data-product-id='1'])[2]"));
-        jsClick(addToCartFirstProduct);
+        waitForSecond(2);
+        js.executeScript("arguments[0].click();",addToCartFirstProduct);
 
 
         //5-Click 'Continue Shopping' button
         WebElement continueShoppingButton = driver.findElement(By.xpath("//*[text()='Continue Shopping']"));
-        jsClick(continueShoppingButton);
+        js.executeScript("arguments[0].click();",continueShoppingButton);
         wait.until(ExpectedConditions.invisibilityOf(continueShoppingButton));
 
 
@@ -60,12 +61,13 @@ public class TC_12 extends TestBase {
 
         actions.moveToElement(secondProduct).perform();
         WebElement addToCartSecondProduct = driver.findElement(By.xpath("(//*[@data-product-id='2'])[2]"));
-        jsClick(addToCartSecondProduct);
+        waitForSecond(2);
+        js.executeScript("arguments[0].click();",addToCartSecondProduct);
 
 
         //7-Click 'View Cart' button
         WebElement viewCartButton = driver.findElement(By.xpath("//*[text()='View Cart']"));
-        viewCartButton.click();
+        js.executeScript("arguments[0].click();",viewCartButton);
 
 
         //8-Verify both products are added to Cart
