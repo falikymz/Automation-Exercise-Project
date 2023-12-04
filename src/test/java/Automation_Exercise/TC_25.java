@@ -78,12 +78,12 @@ public class TC_25 extends TestBase {
         waitForSecond(2);
 
         WebElement actual= driver.findElement(By.xpath(("(//h2[.='Full-Fledged practice website for Automation Engineers'])[1]")));
-       // String actual= text.getText();
+        // String actualt= actual.getText();
         String expected= "Full-Fledged practice website for Automation Engineers";
-        waitForSecond(5);
+        waitForSecond(6);
 
         Assert.assertTrue(actual.isDisplayed());
-        waitForSecond(5);
+        waitForSecond(6);
 
        // Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
         extentTest.info("Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen");

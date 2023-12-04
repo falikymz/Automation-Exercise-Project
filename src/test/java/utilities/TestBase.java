@@ -46,11 +46,9 @@ public abstract class TestBase {
         //bunun icinde ExtentHtmlReporter classindan bir object olusturmaliyiz
 
         String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmm").format(LocalDateTime.now());
-<<<<<<< HEAD
-        String path ="target/extentReport/"+testName+"htmlReport.html";
-=======
+       // String path ="target/extentReport/"+testName+"htmlReport.html";
+
         String path ="target/extentReport/"+testName+date+"htmlReport.html";
->>>>>>> master
         extentHtmlReporter = new ExtentHtmlReporter(path);
 
         //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
