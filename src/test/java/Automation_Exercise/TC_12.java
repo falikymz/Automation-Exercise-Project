@@ -17,6 +17,7 @@ public class TC_12 extends TestBase {
     public void test01() {
         rapor("Chrome","Automation Exercise ","TC_12","Suleyman Aslanturk");
         extentTest = extentReports.createTest("Test Case 12: Add Products in Cart","Test Steps");
+
         Actions actions = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -24,20 +25,18 @@ public class TC_12 extends TestBase {
 
         //1-Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
-        extentTest.info("automationexercise web sitesine gidildi.");
+        extentTest.info("Navigate to url");
 
         //2-Verify that home page is visible successfully
         String expectedHomePageUrl = "https://automationexercise.com/";
         String actualHomePageUrl = driver.getCurrentUrl();
         Assert.assertEquals(expectedHomePageUrl,actualHomePageUrl);
-        extentTest.pass("Ana sayfa başarıyla görüntülendi.");
-
+        extentTest.info("Home page is visible ");
 
         //3-Click 'Products' button
         WebElement productsButton = driver.findElement(By.xpath("//*[@href='/products']"));
-        productsButton.click();
-        extentTest.info("Products butonuna tıklandı.");
-
+        js.executeScript("arguments[0].click();",productsButton);
+        extentTest.info("Click 'Products' button");
 
         //4-Hover over first product and click 'Add to cart'
         WebElement firstProduct = driver.findElement(By.xpath("//*[@src='/get_product_picture/1']"));
@@ -47,14 +46,15 @@ public class TC_12 extends TestBase {
 
         actions.moveToElement(firstProduct).perform();
         WebElement addToCartFirstProduct = driver.findElement(By.xpath("(//*[@data-product-id='1'])[2]"));
-        jsClick(addToCartFirstProduct);
-        extentTest.info("İlk ürünün üzerinde bekleyince ortaya çıkan Add to cart butonuna tıklandı.");
+        waitForSecond(2);
+        js.executeScript("arguments[0].click();",addToCartFirstProduct);
+        extentTest.info("Hover over first product and click");
 
         //5-Click 'Continue Shopping' button
         WebElement continueShoppingButton = driver.findElement(By.xpath("//*[text()='Continue Shopping']"));
-        jsClick(continueShoppingButton);
+        js.executeScript("arguments[0].click();",continueShoppingButton);
         wait.until(ExpectedConditions.invisibilityOf(continueShoppingButton));
-
+        extentTest.info("Click 'Continue Shopping'");
 
         //6-Hover over second product and click 'Add to cart'
         WebElement secondProduct = driver.findElement(By.xpath("//*[@src='/get_product_picture/2']"));
@@ -64,25 +64,26 @@ public class TC_12 extends TestBase {
 
         actions.moveToElement(secondProduct).perform();
         WebElement addToCartSecondProduct = driver.findElement(By.xpath("(//*[@data-product-id='2'])[2]"));
-        jsClick(addToCartSecondProduct);
-        extentTest.info("İkinci ürünün üzerinde bekleyince ortaya çıkan Add to cart butonuna tıklandı.");
+        waitForSecond(2);
+        js.executeScript("arguments[0].click();",addToCartSecondProduct);
 
+        extentTest.info("Hover over second product and click");
         //7-Click 'View Cart' button
         WebElement viewCartButton = driver.findElement(By.xpath("//*[text()='View Cart']"));
-        viewCartButton.click();
-        extentTest.info("Wiev Cart butonuna tıklandı.");
+        js.executeScript("arguments[0].click();",viewCartButton);
 
+        extentTest.info("Click View Cart button ");
         //8-Verify both products are added to Cart
 
         //first product
         WebElement firstProductVerify = driver.findElement(By.xpath("//*[@src='get_product_picture/1']"));
         Assert.assertTrue(firstProductVerify.isDisplayed());
-        extentTest.pass("İlk ürünün Cart a eklendiği doğrulandı.");
+
         //second Product
         WebElement secondProductVerify = driver.findElement(By.xpath("//*[@src='get_product_picture/2']"));
         Assert.assertTrue(secondProductVerify.isDisplayed());
-        extentTest.pass("İkinci ürünün Cart a eklendiği doğrulandı.");
 
+        extentTest.info("Verify both products are added to Cart");
         //9-Verify their prices, quantity and total price
 
         //Verify Prices
@@ -90,32 +91,32 @@ public class TC_12 extends TestBase {
         //-Product 1
         String firstProductActualPrice = driver.findElement(By.xpath("//*[@id='product-1']//*[@*='cart_total_price']")).getText();
         Assert.assertEquals(firstProductExpectedPrice,firstProductActualPrice);
-        extentTest.pass("İlk ürünün fiyatının ürünü cart a eklemeden önceki ürün fiyatıyla aynı olduğu doğrulandı.");
+
         //-Product 2
         String secondProductActualPrice = driver.findElement(By.xpath("//*[@id='product-2']//*[@*='cart_total_price']")).getText();
         Assert.assertEquals(secondProductExpectedPrice,secondProductActualPrice);
-        extentTest.pass("İkinci ürünün fiyatının ürünü cart a eklemeden önceki ürün fiyatıyla aynı olduğu doğrulandı.");
+
         //Verify Quantities
 
         //-Product 1
         WebElement firstProductActualQuantity = driver.findElement(By.xpath("//*[@id='product-1']//*[@*='cart_quantity']"));
         Assert.assertEquals("1",firstProductActualQuantity.getText());
-        extentTest.pass("Eklenen ilk ürün miktarının 1 olduğu doğrulandı doğrulandı.");
+
         //-Product 2
         WebElement secondProductActualQuantity = driver.findElement(By.xpath("//*[@id='product-2']//*[@*='cart_quantity']"));
         Assert.assertEquals("1",secondProductActualQuantity.getText());
-        extentTest.pass("Eklenen ikinci ürün miktarının 1 olduğu doğrulandı doğrulandı.");
+
         //Verify Total Prices
 
         //-Product 1
         String firstProductActualTotalPrice = driver.findElement(By.xpath("//*[@id='product-1']//*[@*='cart_total_price']")).getText();
         Assert.assertEquals(firstProductActualPrice,firstProductActualTotalPrice);
-        extentTest.pass("İlk ürünün toplam fiyatının beklenen toplam fiyatla aynı olduğu doğrulandı..");
+
         //Product 2
         String secondProductActualTotalPrice = driver.findElement(By.xpath("//*[@id='product-2']//*[@*='cart_total_price']")).getText();
         Assert.assertEquals(secondProductActualPrice,secondProductActualTotalPrice);
-        extentTest.pass("İkinci ürünün toplam fiyatının beklenen toplam fiyatla aynı olduğu doğrulandı..");
+        extentTest.info("erify their prices, quantity and total price");
+        extentTest.pass("Test Pass");
         extentReports.flush();
-
     }
 }

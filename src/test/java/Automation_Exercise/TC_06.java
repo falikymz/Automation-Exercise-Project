@@ -77,11 +77,11 @@ public class TC_06 extends TestBase {
 
 
 
-        //7. Upload file  //"C:\Users\ayseg\"
+        //7. Upload file
         //\OneDrive\Masaüstü\Batch189.txt
         WebElement chooseFile =driver.findElement(By.cssSelector("input[name='upload_file']"));
-
-        String dynamicPath=System.getProperty("user.home")+"\\OneDrive\\Masaüstü\\upload file\\upload.png";
+        //"C:\Users\alika\Pictures\Screenshots/upload.png"
+        String dynamicPath=System.getProperty("user.home")+"\\Pictures\\Screenshots\\upload.png";
         chooseFile.sendKeys(dynamicPath);
 
 

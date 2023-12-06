@@ -22,12 +22,12 @@ public class TC_21 extends TestBase {
 
         //1. Launch browser
         driver.get("https://www.google.com");
-        extentTest.info("1. Launch browser");
+        extentTest.info("Launch browser");
 
 
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
-        extentTest.info("2. Navigate to url 'http://automationexercise.com'");
+        extentTest.info("Navigate to url ");
 
 
         //3. Click on 'Products' button
@@ -40,7 +40,7 @@ public class TC_21 extends TestBase {
         products=driver.findElement(By.xpath("//a[text()=' Products']"));
         String actualData = products.getAttribute("style");
         Assert.assertEquals("color: orange;",actualData);
-        extentTest.info("4. Verify user is navigated to ALL PRODUCTS page successfully");
+        extentTest.info("Verify user is navigated to ALL PRODUCTS page successfully");
         extentTest.pass("Test Pass");
 
 
@@ -48,16 +48,14 @@ public class TC_21 extends TestBase {
         WebElement product1 = driver.findElement(By.xpath("//a[text()='View Product']"));
         js.executeScript("arguments[0].click()",product1);
 
-        extentTest.info("5. Click on 'View Product' button");
+        extentTest.info(" Click on 'View Product' ");
 
 
         //6. Verify 'Write Your Review' is visible
         WebElement reviewText =driver.findElement(By.xpath("//a[text()='Write Your Review']"));
         Assert.assertTrue(reviewText.isDisplayed());
-        extentTest.info("6. Verify 'Write Your Review' is visible");
+        extentTest.info(" Verify 'Write Your Review' is visible");
         extentTest.pass("Test Pass");
-
-
 
         //7. Enter name, email and review
         Faker faker = new Faker();
@@ -66,21 +64,21 @@ public class TC_21 extends TestBase {
         nameBox.sendKeys(faker.name().firstName(), Keys.TAB,faker.internet().emailAddress());
         WebElement textArea = driver.findElement(By.xpath("//textarea[@id='review']"));
         textArea.sendKeys(faker.lorem().paragraph(2));
-        extentTest.info("7. Enter name, email and review");
+        extentTest.info(" Enter name, email and review");
 
 
         //8. Click 'Submit' button
         WebElement submitButton =driver.findElement(By.xpath("//button[@id='button-review']"));
         js.executeScript("arguments[0].click()",submitButton);
-        extentTest.info("//8. Click 'Submit' button");
+        extentTest.info(" Click 'Submit' button");
 
 
         //9. Verify success message 'Thank you for your review.'
         WebElement sendMessageText = driver.findElement(By.xpath("//span[text()='Thank you for your review.']"));
         Assert.assertTrue(sendMessageText.isDisplayed());
-        extentTest.info("9. Verify success message 'Thank you for your review.'");
+        extentTest.info(" Verify success message 'Thank you for your review.'");
         extentTest.pass("Test Pass");
 
-
+        extentReports.flush();
     }
 }

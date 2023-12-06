@@ -13,7 +13,7 @@ public class TC_18 extends TestBase {
 
     @Test
     public void categoriesTest () {
-        rapor("Chrome", "Automation Exercise ","TC_18","");
+        rapor("Chrome", "Automation Exercise ","TC_18","Selma Simsek");
         extentTest=extentReports.createTest
                 ("Test Case 18: View Category Products","Test Steps");
         // 1. Launch browser
@@ -24,8 +24,6 @@ public class TC_18 extends TestBase {
         // 3. Verify that categories are visible on left side bar
         // 3. Kategorilerin sol taraftaki çubukta göründüğünü doğrulayın
             driver.get("http://automationexercise.com");
-            Actions actions = new Actions(driver);
-            actions.sendKeys(Keys.PAGE_DOWN).perform();
             WebElement categories = driver.findElement(By.xpath("//div[@id='accordian']"));
             Assert.assertTrue(categories.isDisplayed());
             extentTest.info("Kategorilerin göründüğü doğrulandi");

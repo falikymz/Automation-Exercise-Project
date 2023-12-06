@@ -22,26 +22,27 @@ public class TC_07 extends TestBase {
 
         // 2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
-
+        extentTest.info(" Navigate to url");
 
         // 3. Verify that home page is visible successfully
 
         WebElement logoPage= driver.findElement(By.xpath("//img[@src='/static/images/home/logo.png']"));
         Assert.assertTrue(logoPage.isDisplayed());
+        extentTest.info("Verify that home page is visible successfully");
 
         // 4. Click on 'Test Cases' button
 
         driver.findElement(By.xpath("//button[@type='button'][1]")).click();
+        extentTest.info("Click on 'Test Cases' button");
 
         // 5. Verify user is navigated to test cases page successfully
 
         WebElement testCasesPage=driver.findElement(By.xpath("//b"));
         Assert.assertTrue(testCasesPage.isDisplayed());
         waitForSecond(2);
-
-
+        extentTest.info("Verify user is navigated to test cases page successfully");
+        extentTest.pass("Test Pass");
+        extentReports.flush();
     }
-
-
 
 }

@@ -15,7 +15,7 @@ public class TC_19 extends TestBase {
     public void test01() {
 
 
-        rapor("Chrome","Automation Exercise ","TC_19","Furkan Kılıc");
+        rapor("Chrome","Automation Exercise ","TC_19","Kadir Furkan Kilic");
         extentTest=extentReports.createTest("Test Case 19: View & Cart Brand Products","Test Steps");
 
         //Navigate to url 'http://automationexercise.com'

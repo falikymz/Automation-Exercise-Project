@@ -29,7 +29,7 @@ public class TC_11 extends TestBase {
        String actualHomePageButtonColor = driver.findElement(By.xpath("//a[text()=' Home']")).getAttribute("style");
        String expectedHomePageButtonColor ="color: orange;";
        Assert.assertEquals(expectedHomePageButtonColor,actualHomePageButtonColor);
-        extentTest.info("//3.Verify that home page is visible successfully");
+        extentTest.info("Verify that home page is visible successfully");
         extentTest.pass("Test Pass");
 
         //4. Click 'Cart' button

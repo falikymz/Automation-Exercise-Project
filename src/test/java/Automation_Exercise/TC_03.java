@@ -12,6 +12,7 @@ public class TC_03 extends TestBase {
         //1. Launch browser
         rapor("Chrome","Automation Exercise ","TC_03","Rabia Koc");
         extentTest=extentReports.createTest("Test Case 3: Login User with incorrect email and password","Test Steps");
+
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
         extentTest.info("Kullanıcı automationexercise sayfasına gider.");

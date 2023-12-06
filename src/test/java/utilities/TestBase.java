@@ -46,7 +46,7 @@ public abstract class TestBase {
         //bunun icinde ExtentHtmlReporter classindan bir object olusturmaliyiz
 
         String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmm").format(LocalDateTime.now());
-        String path ="target/extentReport/"+testName+date+"htmlReport.html";
+        String path ="target/extentReport/"+testName+"htmlReport.html";
         extentHtmlReporter = new ExtentHtmlReporter(path);
 
         //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
@@ -76,10 +76,10 @@ public abstract class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-   //  @After
-   //  public void tearDown() throws Exception {
-   //      driver.quit();
-   //  }
+  //  @After
+  //  public void tearDown() throws Exception {
+  //      driver.quit();
+  //  }
 
     //Select Visible Text DropDown
     public void selectVisible (WebElement ddm,String option){
@@ -362,7 +362,7 @@ public abstract class TestBase {
 
 
         //13. Click 'Create Account button'
-        driver.findElement(By.xpath("//button[.='Create Account']")).click();
+        driver.findElement(By.xpath("//button[.='Create Account']")).submit();
 
         driver.findElement(By.xpath("//a[.='Continue']")).click();
 
@@ -394,8 +394,5 @@ public abstract class TestBase {
     }
 
 //*************************************************************************************************************
-
-
-
 
 }

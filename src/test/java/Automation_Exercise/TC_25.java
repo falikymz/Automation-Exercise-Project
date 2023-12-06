@@ -19,8 +19,7 @@ public class TC_25 extends TestBase {
 
         rapor("Chrome","Automation Exercise ","TC_25","Gulsen Tekeli");
         extentTest = extentReports.createTest("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down functionality","Test Steps");
-
-        //Lunch Browser
+//Lunch Browser
         driver.get("https://www.google.com");
         extentTest.info("Launch browser");
         //Navigate to url
@@ -72,15 +71,16 @@ public class TC_25 extends TestBase {
         //Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
         waitForSecond(2);
 
-        WebElement actual= driver.findElement(By.xpath(("(//h2[.='Full-Fledged practice website for Automation Engineers'])[1]")));
-       // String actual= text.getText();
-        String expected= "Full-Fledged practice website for Automation Engineers";
-        waitForSecond(5);
+        List<WebElement> actual = driver.findElements(By.xpath(("//h2[.='Full-Fledged practice website for Automation Engineers']")));
+        WebElement actual1 =actual.get(0);
+        WebElement actual2 =actual.get(1);
+        WebElement actual3 =actual.get(2);
+        waitForSecond(2);
 
-        Assert.assertTrue(actual.isDisplayed());
-        waitForSecond(5);
+        Assert.assertTrue(actual1.isDisplayed()||actual2.isDisplayed()||actual3.isDisplayed());
+        waitForSecond(2);
 
-       // Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
+        // Assert.assertEquals("Full-Fledged practice website for Automation Engineers",actual);
         extentTest.info("Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen");
         extentTest.info("TEST PASSED");
         extentReports.flush();

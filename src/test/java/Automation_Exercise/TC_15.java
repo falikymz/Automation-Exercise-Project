@@ -173,9 +173,9 @@ public class TC_15 extends TestBase {
 
 
         String actualAdress = driver.findElement(By.xpath("(//li[@class='address_address1 address_address2'])[2]")).getText();
-        String expectedAdress = ""+address;
 
-        Assert.assertEquals(expectedAdress,actualAdress);
+
+        Assert.assertEquals(address,actualAdress);
 
 
         String actualStateCityZipcode = driver.findElement(By.xpath("//li[@class='address_city address_state_name address_postcode']")).getText();

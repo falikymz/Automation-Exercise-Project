@@ -51,7 +51,6 @@ public class TC_22 extends TestBase {
         extentTest.info("Ürünün sepet sayfasında görüntülendiği doğrulandı.");
         extentTest.pass("TEST BAŞARILI OLDU");
         extentReports.flush();
-        driver.quit();
 
     }
 }
