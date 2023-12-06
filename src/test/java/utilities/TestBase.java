@@ -52,7 +52,6 @@ public abstract class TestBase {
         //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
         extentReports.attachReporter(extentHtmlReporter);
 
-
         //Html raporunun belge basligini ayarlar, bu baslik sekme uzerinde görünür
         extentHtmlReporter.config().setDocumentTitle("Automation Exercise Test Project");
 
@@ -76,10 +75,10 @@ public abstract class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-  //  @After
-  //  public void tearDown() throws Exception {
-  //      driver.quit();
-  //  }
+          @After
+          public void tearDown() throws Exception {
+              driver.quit();
+          }
 
     //Select Visible Text DropDown
     public void selectVisible (WebElement ddm,String option){
@@ -147,7 +146,7 @@ public abstract class TestBase {
     }
 
 
-    //JSexecutor click method
+        //JSexecutor click method
 
     public void jsClick(WebElement webElement){
 
@@ -229,7 +228,7 @@ public abstract class TestBase {
 
     }
 
-//***********************************************************************************************************
+        //***********************************************************************************************************
 
 
     Faker faker=new Faker();
@@ -393,6 +392,6 @@ public abstract class TestBase {
         return password;
     }
 
-//*************************************************************************************************************
+        //*************************************************************************************************************
 
 }
