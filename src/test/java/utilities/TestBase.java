@@ -265,8 +265,6 @@ public abstract class TestBase {
         //Click 'Signup' button
         driver.findElement(By.xpath("//button[.='Signup']")).click();
 
-
-
         driver.findElement(By.id("password")).sendKeys(password);
 
         WebElement days=driver.findElement(By.id("days"));
@@ -288,13 +286,9 @@ public abstract class TestBase {
 
         selectMonth.selectByIndex(month);
 
-
-
         int yearss= faker.number().numberBetween(0,122);
 
         selectYear.selectByIndex(yearss);
-
-
 
         //. Select checkbox 'Sign up for our newsletter!'
         WebElement cBox1=driver.findElement(By.id("newsletter"));
@@ -302,8 +296,6 @@ public abstract class TestBase {
 
             cBox1.click();
         }
-
-
 
         //Select checkbox "Receive special offers from our partners!"
         WebElement cBox2=driver.findElement(By.id("optin"));
@@ -348,16 +340,11 @@ public abstract class TestBase {
         WebElement city=driver.findElement(By.id("city"));
         city.sendKeys(faker.address().city());
 
-
         WebElement zipcode=driver.findElement(By.id("zipcode"));
         zipcode.sendKeys(faker.address().zipCode(),Keys.TAB);
 
-
-
         WebElement mobileNumber=driver.findElement(By.id("mobile_number"));
         mobileNumber.sendKeys(faker.phoneNumber().cellPhone());
-
-
 
 
         //13. Click 'Create Account button'
