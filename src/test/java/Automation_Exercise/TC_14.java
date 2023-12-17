@@ -77,10 +77,10 @@ public class TC_14 extends TestBase {
 
         //9. Fill all details in Signup and create account
         Faker faker = new Faker();
-       WebElement nameSignUp= driver.findElement(By.xpath("//input[@name='name']"));
-       String emailAddress =faker.internet().emailAddress();
-       String fullName =faker.name().fullName();
-       nameSignUp.sendKeys(fullName, Keys.TAB,emailAddress,Keys.ENTER);
+        WebElement nameSignUp= driver.findElement(By.xpath("//input[@name='name']"));
+        String emailAddress =faker.internet().emailAddress();
+        String fullName =faker.name().fullName();
+        nameSignUp.sendKeys(fullName, Keys.TAB,emailAddress,Keys.ENTER);
         extentTest.info("Fill all details in Signup and create account");
 
 
@@ -100,15 +100,15 @@ public class TC_14 extends TestBase {
         WebElement month =driver.findElement(By.xpath("//select[@id='months']"));
         WebElement year =driver.findElement(By.xpath("//select[@id='years']"));
 
-       day.sendKeys("11",Keys.ENTER);
-       month.sendKeys("April",Keys.ENTER);
-       year.sendKeys("2004",Keys.ENTER);
+        day.sendKeys("11",Keys.ENTER);
+        month.sendKeys("April",Keys.ENTER);
+        year.sendKeys("2004",Keys.ENTER);
 
-       //*Full Name Box
-       WebElement firstName=driver.findElement(By.id("first_name"));
-       firstName.sendKeys(faker.name().firstName(),Keys.TAB,faker.name().lastName());
+        //*Full Name Box
+        WebElement firstName=driver.findElement(By.id("first_name"));
+        firstName.sendKeys(faker.name().firstName(),Keys.TAB,faker.name().lastName());
 
-       //*Adress Box
+        //*Adress Box
         WebElement adressBox =driver.findElement(By.id("address1"));
         String address =faker.address().fullAddress();
         adressBox.sendKeys(address);
